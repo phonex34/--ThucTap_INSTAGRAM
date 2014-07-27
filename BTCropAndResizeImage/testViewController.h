@@ -11,7 +11,10 @@
 @interface testViewController : UIViewController<UINavigationBarDelegate,UITextFieldDelegate,UIActionSheetDelegate,UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UISlider *imageSlider;
-@property (weak, nonatomic) IBOutlet UIScrollView *myScrollView;
+@property (weak, nonatomic) IBOutlet UIScrollView *effectScrollView;
+@property (weak, nonatomic) IBOutlet UIScrollView *editScrollView;
+@property (weak, nonatomic) IBOutlet UIView *navigationView;
+@property (weak, nonatomic) IBOutlet UIView *imageSliderView;
 @property (strong, nonatomic) UIImage *imageToFilter;
 @property (strong, nonatomic) NSData *DataResaultFilter;
 
@@ -20,7 +23,5 @@
 @property (nonatomic) NSInteger lkChooseType;
 
 - (IBAction)changeSliderValue:(id)sender;
-- (IBAction)brightButton:(id)sender;
-- (IBAction)sharpenButton:(id)sender;
-- (IBAction)contrastButton:(id)sender;
+
 @end

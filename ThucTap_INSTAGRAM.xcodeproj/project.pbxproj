@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F9A76001984F41900AABFD9 /* ImageProcessingCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F9A75FF1984F41900AABFD9 /* ImageProcessingCore.m */; };
+		2F9A76021984F45400AABFD9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F9A76011984F45400AABFD9 /* Main.storyboard */; };
 		66078CC5197DCDF30010F575 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66078CC4197DCDF30010F575 /* CoreImage.framework */; };
 		66078CC7197DCE180010F575 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66078CC6197DCE180010F575 /* AssetsLibrary.framework */; };
 		66078CCE197DCFE70010F575 /* testViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66078CCD197DCFE70010F575 /* testViewController.m */; };
@@ -31,7 +33,6 @@
 		66AEADB71976D0B700BC34AA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 66AEADB51976D0B700BC34AA /* InfoPlist.strings */; };
 		66AEADB91976D0B700BC34AA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 66AEADB81976D0B700BC34AA /* main.m */; };
 		66AEADBD1976D0B700BC34AA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 66AEADBC1976D0B700BC34AA /* AppDelegate.m */; };
-		66AEADC01976D0B800BC34AA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66AEADBE1976D0B800BC34AA /* Main.storyboard */; };
 		66AEADC31976D0B800BC34AA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66AEADC21976D0B800BC34AA /* ViewController.m */; };
 		66AEADC51976D0B800BC34AA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66AEADC41976D0B800BC34AA /* Images.xcassets */; };
 		66AEADCC1976D0B900BC34AA /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66AEADCB1976D0B900BC34AA /* XCTest.framework */; };
@@ -78,6 +79,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2F9A75FE1984F41900AABFD9 /* ImageProcessingCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageProcessingCore.h; sourceTree = "<group>"; };
+		2F9A75FF1984F41900AABFD9 /* ImageProcessingCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageProcessingCore.m; sourceTree = "<group>"; };
+		2F9A76011984F45400AABFD9 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		66078CC4197DCDF30010F575 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		66078CC6197DCE180010F575 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		66078CCC197DCFD40010F575 /* testViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testViewController.h; sourceTree = "<group>"; };
@@ -110,7 +114,6 @@
 		66AEADBA1976D0B700BC34AA /* ThucTap_INSTAGRAM-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ThucTap_INSTAGRAM-Prefix.pch"; sourceTree = "<group>"; };
 		66AEADBB1976D0B700BC34AA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		66AEADBC1976D0B700BC34AA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		66AEADBF1976D0B800BC34AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		66AEADC11976D0B800BC34AA /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		66AEADC21976D0B800BC34AA /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		66AEADC41976D0B800BC34AA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -187,6 +190,8 @@
 			isa = PBXGroup;
 			children = (
 				66078CCC197DCFD40010F575 /* testViewController.h */,
+				2F9A75FE1984F41900AABFD9 /* ImageProcessingCore.h */,
+				2F9A75FF1984F41900AABFD9 /* ImageProcessingCore.m */,
 				66078CCD197DCFE70010F575 /* testViewController.m */,
 				66078CCA197DCF7D0010F575 /* Filtrr */,
 			);
@@ -211,7 +216,7 @@
 			children = (
 				66AEADBB1976D0B700BC34AA /* AppDelegate.h */,
 				66AEADBC1976D0B700BC34AA /* AppDelegate.m */,
-				66AEADBE1976D0B800BC34AA /* Main.storyboard */,
+				2F9A76011984F45400AABFD9 /* Main.storyboard */,
 				66AEADC11976D0B800BC34AA /* ViewController.h */,
 				66AEADC21976D0B800BC34AA /* ViewController.m */,
 			);
@@ -469,12 +474,12 @@
 				66F1D91B19810203007A6A27 /* weibo.png in Resources */,
 				66F1D9191981010D007A6A27 /* twitter.jpeg in Resources */,
 				66DC7BFF1980A0560065AD27 /* PDLCustomCell.xib in Resources */,
-				66AEADC01976D0B800BC34AA /* Main.storyboard in Resources */,
 				66F29A96197E33AA006FA8C5 /* images.jpeg in Resources */,
 				66DC7BFB1980A0560065AD27 /* big.jpg in Resources */,
 				66F1D9111980FC6E007A6A27 /* connectfb.png in Resources */,
 				66078CE4197DD7510010F575 /* e2.png in Resources */,
 				66078CEA197DD7510010F575 /* e8.png in Resources */,
+				2F9A76021984F45400AABFD9 /* Main.storyboard in Resources */,
 				66F29A95197E33AA006FA8C5 /* images5.jpeg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -502,6 +507,7 @@
 				66DC7BFD1980A0560065AD27 /* PDLViewController.m in Sources */,
 				66AEADE41976D3FA00BC34AA /* resizeImage.m in Sources */,
 				66078CD3197DD0050010F575 /* UIImage+FiltrrCompositions.m in Sources */,
+				2F9A76001984F41900AABFD9 /* ImageProcessingCore.m in Sources */,
 				66078CD6197DD00F0010F575 /* UIImage+Filtrr.m in Sources */,
 				66AEADBD1976D0B700BC34AA /* AppDelegate.m in Sources */,
 				66B927911980B7FA00BA0D5D /* UIImage+Extra.m in Sources */,
@@ -536,14 +542,6 @@
 				66AEADB61976D0B700BC34AA /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		66AEADBE1976D0B800BC34AA /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				66AEADBF1976D0B800BC34AA /* Base */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		66AEADD41976D0B900BC34AA /* InfoPlist.strings */ = {

@@ -11,6 +11,9 @@
 #import "resizeImage.h"
 #import "ShareViewController.h"
 #import "UIImage+Extra.h"
+#import "ImageProcessingCore.h"
+
+
 #define SCREEN_WIDTH 120
 #define SCREEN_HEIGHT 72
 
@@ -21,23 +24,28 @@
 @implementation testViewController{
     UIImage *imageToResize;
 }
-CIContext *context;
-CIImage *beginImage;
-int tempButton;
-int tempFilter=0;
+UIImage *beginImage;
 
-NSMutableDictionary *allFilter;
-CIFilter *lighten,*sharpen,*contrast;
-UIImageOrientation orientation; // New!
+//@auhtor phonex
+//case edit button(switch bright,sharpness etc.....)
+int caseEditButton;
+//count effect used 0= no effect
+int countEditUsed=0,countEffectUsed=0;
+UIImage *beginUIImage,*imgViewAfterEditImage,*imgViewAfterEffectImage;//use to contain the temp imageview image
 
-//CIImage* imageFilter ;
-NSArray *imageFilter;
-NSDictionary *dict;
-NSArray *titleFilter;
-UIButton *btnTwo;
+//@author phonex
+//Array for ScrollView
+NSArray *imageFilterScroll;
+NSArray *titleFilterScroll;
+UIButton *btnSingleEffect,*btnEffectImage,*btnEditImage;
+//array for edit scroll view
+NSArray *imageEditScroll;
+UIButton *btnSingleEdit;
+
+
+@synthesize navigationView,imageSliderView,imageView;
 @synthesize imageSlider;
-@synthesize imageView;
-@synthesize myScrollView;
+@synthesize effectScrollView,editScrollView;
 @synthesize imageToFilter;
 
 @synthesize lkImageToCrop;
@@ -50,97 +58,102 @@ UIButton *btnTwo;
     [super viewDidLoad];
     imageToResize= lkImageToCrop;
     imageView.image = [self cropImageMethod:[self resizeImage]];
-    //Create a orginal imageView
-	// Do any additional setup after loading the view, typically from a nib.
-//    NSString *filePath =
-//    [[NSBundle mainBundle] pathForResource:@"Fnatic" ofType:@"png"];
-//    NSURL *fileNameAndPath = [NSURL fileURLWithPath:filePath];
-  //  imageView.contentMode = UIViewContentModeScaleToFill;
-//    beginImage = [CIImage imageWithContentsOfURL:fileNameAndPath];
-//    context = [CIContext contextWithOptions:nil];
-    
-    //filter2 = [CIFilter filterWithName:@"CISepiaTone"
-        //                keysAndValues:kCIInputImageKey, beginImage, @"inputIntensity",
-      //        @0.0, nil];
-  //  CIImage *outputImage = [filter2 outputImage];
- 
-    imageSlider.hidden=YES;
-    // 2
-//  CGImageRef cgimg =
-//  [context createCGImage:outputImage fromRect:[outputImage extent]];
-//
-//    UIImage *newImage = [UIImage imageNamed:@"Fnatic.png"];
-  //  UIImage *newImage = imageToFilter;
-//  newImage = [newImage e10];
-//    newImage = [newImage e5];
-//    anImageViewController.image = img;
-
-    // 3
-    // UIImage *newImage = [UIImage imageWithCGImage:cgimg];
-       // self.imageView.image = newImage;
-        beginImage = [CIImage imageWithCGImage:imageView.image.CGImage];
-        context = [CIContext contextWithOptions:nil];
-    // 4
-    // CGImageRelease(cgimg);
-    
-
+    imageView.contentMode = UIViewContentModeScaleToFill;
     
     
+    beginUIImage=imageView.image;
+    
+    
+    
+    //@author phonex
     //create matrix filter
-    NSArray *filterName = @[@"Brightness", @"Sharpenss",
-                        @"Contrast"];
-    NSArray *filterValue = @[[NSNumber numberWithFloat:0.0],
-                             [NSNumber numberWithFloat:0.0],
-                             [NSNumber numberWithFloat:1.0]];
-    allFilter = [NSMutableDictionary dictionaryWithObjects:filterValue forKeys:filterName];
-
-
-
-    //create all filter
-    lighten = [CIFilter filterWithName:@"CIColorControls"];
-    sharpen=   [CIFilter filterWithName:@"CISharpenLuminance"];
-    contrast = [CIFilter filterWithName:@"CIColorControls"];
+    NSArray *editFilterName2= @[@"Brightness", @"Sharpenss",
+                                @"Contrast",@"Effect"];
     
     
-    //create a scrollview
-    imageFilter = [NSArray arrayWithObjects:@"e1.png",@"e2.png",@"e3.png",@"e4.png",@"e5.png", nil];
-    titleFilter =[NSArray arrayWithObjects:@"Effect1",@"Effect2",@"Effect3",@"Effect4",@"Effect5", nil];
+    //create a effect scrollview
+    imageFilterScroll = [NSArray arrayWithObjects:@"e1.png",@"e2.png",@"e3.png",@"e4.png",@"e5.png",@"e6.png",@"e7.png",@"e8.png",@"e9.png",@"e10.png",@"e11.png", nil];
+    titleFilterScroll =[NSArray arrayWithObjects:@"Effect1",@"Effect2",@"Effect3",@"Effect4",@"Effect5",@"Effect6",@"Effect7",@"Effect8",@"Effect9",@"Effect10",@"Effect11", nil];
     
     int leftMargin = 0;
-    for (int i = 0; i < [imageFilter count]; i++)
+    for (int i = 0; i < [imageFilterScroll count]; i++)
     {
         
-        NSLog(@"i la %d",i);
-        btnTwo = [UIButton buttonWithType:UIButtonTypeCustom];
-        btnTwo.frame=CGRectMake(leftMargin, 10, SCREEN_WIDTH-10, SCREEN_HEIGHT-10);
+        btnSingleEffect= [UIButton buttonWithType:UIButtonTypeCustom];
+        btnSingleEffect.frame=CGRectMake(leftMargin, 10, SCREEN_WIDTH-10, SCREEN_HEIGHT-10);
         
-        NSString *cacheImage = [NSString stringWithFormat:@"%@",[imageFilter objectAtIndex:i]];
+        NSString *cacheImage = [NSString stringWithFormat:@"%@",[imageFilterScroll objectAtIndex:i]];
         
         UIImage *niceImage = [UIImage imageNamed:cacheImage];
-        btnTwo.tag=i+2;
-        [btnTwo setBackgroundImage:niceImage forState:UIControlStateNormal];
-        [myScrollView addSubview:btnTwo];
-        
-        
-        //        UIImage *btnImage = [UIImage imageNamed:@"image.png"];
-        //        [btnTwo setImage:btnImage forState:UIControlStateNormal];
+        btnSingleEffect.tag=i+2;
+        [btnSingleEffect setBackgroundImage:niceImage forState:UIControlStateNormal];
+        [effectScrollView addSubview:btnSingleEffect];
         
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(leftMargin-2, 82, 120, 28)
                           ];
         [label setTextAlignment:NSTextAlignmentCenter];
         [label setBackgroundColor:[UIColor clearColor]];
-        [label setText:[titleFilter objectAtIndex:i]];
-        label.tag = i+3;
-//        temp=label.tag;
-//        NSLog(@"tag la %d",temp);
+        [label setText:[titleFilterScroll objectAtIndex:i]];
+        
+        
         [label setFont:[UIFont fontWithName:@"Helvetica" size:16]];
         [label setTextColor:[UIColor whiteColor]];
-        [myScrollView addSubview:label];
+        [effectScrollView addSubview:label];
         leftMargin += SCREEN_WIDTH;
-        [btnTwo addTarget:self action:@selector(effectSelected:) forControlEvents:UIControlEventTouchUpInside];
-        }
-        CGSize contentSize = CGSizeMake(leftMargin, SCREEN_HEIGHT+28);
-        [self.myScrollView setContentSize: contentSize];
+        [btnSingleEffect addTarget:self action:@selector(effectFilterSelected:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    CGSize contentSize = CGSizeMake(leftMargin, SCREEN_HEIGHT+28);
+    [self.effectScrollView setContentSize: contentSize];
+    
+    //create a edit scroll view
+    [editScrollView setFrame:CGRectMake(0,365, 320, 100)];
+    imageEditScroll = [NSArray arrayWithObjects:@"brightnesstool@2x.png",@"sharpentool@2x.png",@"contrasttool@2x.png", nil];
+    leftMargin=0;
+    for (int i = 0; i < [editFilterName2 count]-1; i++)
+    {
+        
+        btnSingleEdit= [UIButton buttonWithType:UIButtonTypeCustom];
+        btnSingleEdit.frame=CGRectMake(leftMargin, 10, SCREEN_WIDTH-80, SCREEN_HEIGHT-40);
+        
+        NSString *cacheImage = [NSString stringWithFormat:@"%@",[imageEditScroll objectAtIndex:i]];
+        
+        UIImage *niceImage = [UIImage imageNamed:cacheImage];
+        btnSingleEdit.tag=i+2;
+        [btnSingleEdit setBackgroundImage:niceImage forState:UIControlStateNormal];
+        [editScrollView addSubview:btnSingleEdit];
+        
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(leftMargin-2, 82, 120, 28)
+                          ];
+        [label setTextAlignment:NSTextAlignmentCenter];
+        [label setBackgroundColor:[UIColor clearColor]];
+        [label setText:[editFilterName2 objectAtIndex:i]];
+        
+        
+        [label setFont:[UIFont fontWithName:@"Helvetica" size:16]];
+        [label setTextColor:[UIColor whiteColor]];
+        [editScrollView addSubview:label];
+        leftMargin += SCREEN_WIDTH;
+        [btnSingleEdit addTarget:self action:@selector(editFilterSelected:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    [self.editScrollView setContentSize: contentSize];
+    effectScrollView.hidden=NO;
+    editScrollView.hidden=YES;
+    
+    
+    
+    //create navigation view
+    btnEffectImage=[UIButton buttonWithType:UIButtonTypeCustom];
+    btnEffectImage.frame=CGRectMake(100, 5, 25, 30);
+    btnEditImage=[UIButton buttonWithType:UIButtonTypeCustom];
+    btnEditImage.frame=CGRectMake(200, 15, 25, 22);
+    UIImage *effectImage=[UIImage imageNamed:@"filtertoolactive@2x.png"];
+    UIImage *editImage=[UIImage imageNamed:@"edit-enhancetool@2x.png"];
+    [btnEffectImage setBackgroundImage:effectImage forState:UIControlStateNormal];
+    [btnEffectImage addTarget:self action:@selector(effectImage:) forControlEvents:UIControlEventTouchUpInside];
+    [btnEditImage setBackgroundImage:editImage forState:UIControlStateNormal];
+    [btnEditImage addTarget:self action:@selector(editImage:) forControlEvents:UIControlEventTouchUpInside];
+    [navigationView addSubview:btnEffectImage];
+    [navigationView addSubview:btnEditImage];
 }
 
 - (void)didReceiveMemoryWarning
@@ -149,135 +162,116 @@ UIButton *btnTwo;
     // Dispose of any resources that can be recreated.
 }
 
--(CIImage *)brightFilter:(CIImage *)img withAmount:(float)intensity {
- 
-    [allFilter setObject: [NSNumber numberWithFloat:intensity] forKey:@"Brightness"];
-       NSLog(@"%@",allFilter);
-    [lighten setValue:img forKey:kCIInputImageKey];
-    [lighten setValue:[allFilter objectForKey:@"Brightness"] forKey:@"inputBrightness"];
-    [sharpen setValue:lighten.outputImage forKey:kCIInputImageKey];
-    [sharpen setValue:[allFilter objectForKey:@"Sharpenss"] forKey:@"inputSharpness"];
-    [contrast setValue:sharpen.outputImage forKey:kCIInputImageKey];
-    [contrast setValue:[allFilter objectForKey:@"Contrast"] forKey:@"inputContrast"];
-//    CImageRelease(imageFilter);
-    return contrast.outputImage; //7
-}
-
--(CIImage *)sharpenFilter:(CIImage *)img withAmount:(float)intensity {
-    
-   
-    [allFilter setObject: [NSNumber numberWithFloat:intensity] forKey:@"Sharpenss"];
-    NSLog(@"%@",allFilter);
-    [lighten setValue:img forKey:kCIInputImageKey];
-    [lighten setValue:[allFilter objectForKey:@"Brightness"] forKey:@"inputBrightness"];
-    [sharpen setValue:lighten.outputImage forKey:kCIInputImageKey];
-    [sharpen setValue:[allFilter objectForKey:@"Sharpenss"] forKey:@"inputSharpness"];
-    [contrast setValue:sharpen.outputImage forKey:kCIInputImageKey];
-    [contrast setValue:[allFilter objectForKey:@"Contrast"] forKey:@"inputContrast"];
-    //    CImageRelease(imageFilter);
-    return contrast.outputImage; //7
-}
-
--(CIImage *)contrastFilter:(CIImage *)img withAmount:(float)intensity {
-    
-    [allFilter setObject: [NSNumber numberWithFloat:intensity] forKey:@"Contrast"];
-    NSLog(@"%@",allFilter);
-    [lighten setValue:img forKey:kCIInputImageKey];
-    [lighten setValue:[allFilter objectForKey:@"Brightness"] forKey:@"inputBrightness"];
-    [sharpen setValue:lighten.outputImage forKey:kCIInputImageKey];
-    [sharpen setValue:[allFilter objectForKey:@"Sharpenss"] forKey:@"inputSharpness"];
-    [contrast setValue:sharpen.outputImage forKey:kCIInputImageKey];
-    [contrast setValue:[allFilter objectForKey:@"Contrast"] forKey:@"inputContrast"];
-    //    CImageRelease(imageFilter);
-    return contrast.outputImage; //7
-}
-
-- (void) effectSelected:(id)sender{
-    //  int bTag = label.tag;
-       int btTag=[sender tag];
-    UIImage *tempImage=imageView.image;
-
-    switch (btTag) {
-        case 2:
-            tempImage=[tempImage e1];
-            imageView.image=tempImage;
-            break;
-        case 3:
-            tempImage=[tempImage e2];
-            imageView.image=tempImage;
-            break;
-        default:
-            break;
-    }
- 
-    NSLog(@"nut %d ",btTag);
-}
 
 - (IBAction)changeSliderValue:(id)sender {
-//    imageSlider.minimumValue=-0.5;
-//    imageSlider.maximumValue=0.5;
-    CIImage *outputImage;
-//    beginImage =[CIimage ima]
+    //
+    countEditUsed=1;
+    UIImage *beginImage2;
     float slideValue = imageSlider.value;
-      NSLog(@"đã vào %f",slideValue);
-//    UIImage *tempImage=imageView.image;
-//beginImage=imageView.image.CIImage;
-  //  context = [CIContext contextWithOptions:nil];
-    switch (tempButton) {
-        case 1:
-            NSLog(@"đã vào bright button %d",tempButton);
+    NSLog(@"gia tri slider %f va case edit button %d",slideValue,caseEditButton);
+    NSLog(@"gia tri count effect %d",countEffectUsed);
+    beginImage2 = beginUIImage;
+    
+    if(countEffectUsed==0){
+        beginImage = beginUIImage;
+        
+    }
+    else{
+        beginImage=imgViewAfterEffectImage;
+        
+    }
+    ImageProcessingCore *imageEditProcessing =[[ImageProcessingCore alloc] init];
+    
+    imageView.image= [imageEditProcessing editImageProcessing:beginImage withAmount:slideValue editTag:caseEditButton];
+    
+    imgViewAfterEditImage=[imageEditProcessing editImageProcessing:beginImage2 withAmount:slideValue editTag:caseEditButton];//
+}
 
-                outputImage= [self brightFilter:beginImage withAmount:slideValue];
-            
-            break;
+- (void) effectFilterSelected:(id)sender{
+    int caseEffectButton=[sender tag];
+    countEffectUsed=1;
+    UIImage *tempEffectImage,*tempEffectImage2;
+    tempEffectImage2=beginUIImage;
+    NSLog(@"bien countediused %d",countEditUsed);
+    if (countEditUsed==0) {
+        tempEffectImage=beginUIImage;
+    }
+    else{
+        
+        tempEffectImage=imgViewAfterEditImage;
+    }
+    
+    
+    ImageProcessingCore *imageEffectProcessing =[[ImageProcessingCore alloc] init];
+    imageView.image=[imageEffectProcessing effectImageProcessing:tempEffectImage editTag:caseEffectButton];
+    imgViewAfterEffectImage=[imageEffectProcessing effectImageProcessing:tempEffectImage2 editTag:caseEffectButton];
+}
+
+-(void) editFilterSelected:(id)sender{
+    [imageSliderView setFrame:CGRectMake(0,280, 320, 100)];
+    editScrollView.hidden=YES;
+    imageSliderView.hidden=NO;
+    
+    int btEditFilterTag=[sender tag];
+    switch (btEditFilterTag) {
         case 2:
-
-                outputImage= [self sharpenFilter:beginImage withAmount:slideValue];
+            caseEditButton=2;
+            imageSlider.value=0.0;
+            imageSlider.maximumValue=0.5;
+            imageSlider.minimumValue=-0.5;
+            
             break;
         case 3:
             
-                outputImage= [self contrastFilter:beginImage withAmount:slideValue];
+            caseEditButton=3;
+            imageSlider.value=0.0;
+            imageSlider.maximumValue=1;
+            imageSlider.minimumValue=-1;
             
-
+            break;
+            
+            
+        case 4:
+            caseEditButton=4;
+            imageSlider.value=1.0;
+            imageSlider.maximumValue=0.0;
+            imageSlider.maximumValue=2.0;
+            
             break;
         default:
             break;
     }
-//    CIImage *outputImage = [self brightFilter:beginImage withAmount:slideValue];
-    
-    CGImageRef cgimg = [context createCGImage:outputImage
-                                     fromRect:[outputImage extent]];
-    
-    UIImage *newImage = [UIImage imageWithCGImage:cgimg scale:1.0 orientation:orientation];
-    self.imageView.image = newImage;
-    
-    CGImageRelease(cgimg);
-}
-
-- (IBAction)brightButton:(id)sender {
-    tempButton=1;
-    imageSlider.value=0.0;
-    imageSlider.maximumValue=0.5;
-    imageSlider.minimumValue=-0.5;
-      imageSlider.hidden=NO;
     
 }
 
-- (IBAction)sharpenButton:(id)sender {
-    tempButton=2;
-    imageSlider.value=0.0;
-    imageSlider.maximumValue=1;
-    imageSlider.minimumValue=-1;
-      imageSlider.hidden=NO;
+
+- (void) editImage:(id)sender{
+    UIImage *editImage=[UIImage imageNamed:@"enhancetoolactive@2x.png"];
+    UIImage *effectImage=[UIImage imageNamed:@"edit-filtertool@2x.png"];
+    [btnEffectImage setBackgroundImage:effectImage forState:UIControlStateNormal];
+    [btnEditImage setBackgroundImage:editImage forState:UIControlStateNormal];
+    imageSliderView.hidden=YES;
+    effectScrollView.hidden=YES;
+    editScrollView.hidden=NO;
+    
+    
 }
 
-- (IBAction)contrastButton:(id)sender {
-    tempButton=3;
-    imageSlider.value=1.0;
-    imageSlider.maximumValue=0.0;
-    imageSlider.maximumValue=2.0;
-    imageSlider.hidden=NO;
+
+- (void) effectImage:(id)sender{
+    UIImage *editImage=[UIImage imageNamed:@"edit-enhancetool@2x.png"];
+    UIImage *effectImage=[UIImage imageNamed:@"filtertoolactive@2x.png"];
+    [btnEffectImage setBackgroundImage:effectImage forState:UIControlStateNormal];
+    [btnEditImage setBackgroundImage:editImage forState:UIControlStateNormal];
+    imageSliderView.hidden=YES;
+    effectScrollView.hidden=NO;
+    editScrollView.hidden=YES;
 }
+
+
+
+
+
 
 
 
@@ -290,13 +284,13 @@ UIButton *btnTwo;
 - (UIImage *) cropImageMethod:(UIImage *)imageResizedToCrop
 {
     UIImage *croppedImage;
-
+    
     float topEdgePosition = CGRectGetMinY(lkBoundView.frame);
     
     CGRect croppedRect;
     
- //   CGFloat variableToCropHeight = (imageResizedToCrop.size.height/410.0);
-
+    //   CGFloat variableToCropHeight = (imageResizedToCrop.size.height/410.0);
+    
     
     croppedRect = CGRectMake(0, topEdgePosition, 320, 320);
     CGImageRef tmp = CGImageCreateWithImageInRect([imageResizedToCrop CGImage], croppedRect);
@@ -307,12 +301,12 @@ UIButton *btnTwo;
     NSData *CroppedImageData = UIImageJPEGRepresentation(croppedImage, 1.0);
     NSData *imageData = UIImageJPEGRepresentation(imageResizedToCrop, 1.0);
     
-
+    
     NSInteger imageToCropDataSize = imageData.length;
     
     NSLog(@"original size %d Bytes", imageToCropDataSize);
     NSLog(@"Resault crop size %d Bytes", CroppedImageData.length);
-   
+    
     return croppedImage;
 }
 
@@ -326,15 +320,15 @@ UIButton *btnTwo;
     NSData *resizedImageData = [imageResize thumbnailImageData];
     
     
-//    imageView.image = [UIImage imageWithData:resizedImageData];
+    //    imageView.image = [UIImage imageWithData:resizedImageData];
     
-//    if (lkChooseType ==1) {
-//        imageView.center =CGPointMake(imageView.frame.size.width/2, imageView.frame.size.height/2);
-//        imageView.transform = CGAffineTransformMakeRotation(M_PI_2);
-//    }
+    //    if (lkChooseType ==1) {
+    //        imageView.center =CGPointMake(imageView.frame.size.width/2, imageView.frame.size.height/2);
+    //        imageView.transform = CGAffineTransformMakeRotation(M_PI_2);
+    //    }
     
     
-   // imageView.image = [imageView.image fixOrientation];
+    // imageView.image = [imageView.image fixOrientation];
     //hien thi kich thuoc sau khi resize
     NSInteger resizedImageDataSize = resizedImageData.length;
     NSLog(@"resized size %d Bytes", resizedImageDataSize);
