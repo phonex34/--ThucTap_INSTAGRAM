@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <Social/Social.h>
 
-@interface ShareViewController : UIViewController<UIActionSheetDelegate>
+@interface ShareViewController : UIViewController<UIActionSheetDelegate,UITextFieldDelegate,UITextViewDelegate>
 {
     SLComposeViewController *composeViewController;
     NSArray *shareTo;

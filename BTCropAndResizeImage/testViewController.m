@@ -349,7 +349,11 @@ UIButton *btnSingleEdit;
 }
 
 //--------------------------------
-
+//@author dvduongth
+-(BOOL)hidesBottomBarWhenPushed
+{
+    return YES;
+}
 
 
 //---------

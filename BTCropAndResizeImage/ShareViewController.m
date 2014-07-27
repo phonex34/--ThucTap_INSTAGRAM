@@ -29,10 +29,10 @@
     imageView.image = lkImage;
     textField.delegate = self;
     textView.delegate = self;
-//    pickerView.delegate = self;
-//    pickerView.dataSource = self;
-    shareTo = [NSArray arrayWithObjects:@"None",@"Facebook",@"Twitter",@"SinaWeibo", nil];
-    // Do any additional setup after loading the view.
+////    pickerView.delegate = self;
+////    pickerView.dataSource = self;
+//    shareTo = [NSArray arrayWithObjects:@"None",@"Facebook",@"Twitter",@"SinaWeibo", nil];
+//    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning
@@ -61,15 +61,15 @@
 }
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    if (textField) {
-        [textField resignFirstResponder];
+    if (self.textField) {
+        [self.textField resignFirstResponder];
     }
     return NO;
 }
 -(BOOL)textViewShouldReturn:(UITextView *)textView
 {
-    if (textView) {
-        [textView resignFirstResponder];
+    if (self.textView) {
+        [self.textView resignFirstResponder];
     }
     return NO;
 }
@@ -242,7 +242,6 @@
 - (IBAction)switchMapChoose:(id)sender {
     NSLog(@"Change SwitchMap");
 }
-
 
 
 @end
