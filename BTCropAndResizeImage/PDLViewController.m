@@ -23,9 +23,10 @@
 @synthesize conn1 = _conn1;
 @synthesize conn2 = _conn2;
 @synthesize tableView =  _tableView;
-
+@synthesize onLoadIndicator = _onLoadIndicator;
 - (void)viewDidLoad
 {
+    [_onLoadIndicator startAnimating];
     [self startConnection];
     _photos = [[NSMutableArray alloc] init];
     _receivedData = [[NSMutableData alloc] init];
@@ -88,6 +89,8 @@
             PDLPhotos *newObject = [[PDLPhotos alloc] initFromDictionary: dictTemp];
             [_photos addObject:newObject];
         }
+        [_onLoadIndicator stopAnimating];
+        [_onLoadIndicator setHidden:YES];
         [_tableView reloadData];
     }
     
@@ -108,7 +111,13 @@
     return 1;
 }
 
-- (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+
+
+- (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+// creating cell at possition : index
+    
     static NSString *indentifier = @"myIndentifier";
     PDLCustomCell *cell = (PDLCustomCell *)[tableView dequeueReusableCellWithIdentifier:indentifier];
     if(cell == nil)
@@ -119,21 +128,42 @@
     PDLPhotos *photo = [_photos objectAtIndex:indexPath.row];
     int width = 0;
     int height = 0;
+    float a = 0.00000;
     width = photo.width.intValue;
     height = [photo height].intValue;
     float factor = (float)width/320.0;
-    [cell.bigImageView setFrame:CGRectMake(0, 50, 320, ((CGFloat)height/factor))];
+    if (factor < 1) {
+    [cell.bigImageView setFrame:CGRectMake(0, 50, 320, height)];
     cell.bigImageView.contentMode = UIViewContentModeScaleAspectFit;
+    }
+    else
+    {
+    a = (float)height/factor;
+    [cell.bigImageView setFrame:CGRectMake(0, 50, 320,a)];
+    cell.bigImageView.contentMode = UIViewContentModeScaleAspectFit;
+    }
     [cell bringSubviewToFront:cell.smallImageView];
+    
+// assign attributes for cell
+    
     [cell initiallizFromdictAtIndex:photo andIndex:indexPath];
     [cell.indicator startAnimating];
     cell.smallImageView.contentMode = UIViewContentModeScaleAspectFit;
     return cell;
 }
+
+// action for row selection
+
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     PDLCustomCell *cell = (PDLCustomCell *)[tableView cellForRowAtIndexPath:indexPath];
-    NSLog(@"witdh : %f height :%f X: %f Y : %f",cell.bigImageView.frame.size.width,cell.bigImageView.frame.size.height,cell.bigImageView.frame.origin.x,cell.bigImageView.frame.origin.y);
+    NSLog(@"witdh frame : %f height frame:%f width of image: %f height : %f",cell.bigImageView.frame.size.width,cell.bigImageView.frame.size.height,cell.bigImageView.image.size.width,cell.bigImageView.image.size.height);
+    
 }
+
+
+// get height for row in here
+
+
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSInteger i = indexPath.row;
     PDLPhotos *photo = [_photos objectAtIndex:i];
@@ -142,6 +172,8 @@
     width = photo.width.intValue;
     height = [photo height].intValue;
     float factor = (float)width/320.0;
+    if(factor<1)
+        return height;
     return (float)((float)(height/factor)+55);
 }
 

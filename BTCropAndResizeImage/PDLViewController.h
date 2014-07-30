@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface PDLViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,NSURLConnectionDataDelegate,NSURLConnectionDelegate>
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *onLoadIndicator;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic,strong) NSMutableData *receivedData;
 @property (nonatomic,strong) NSString *token;
