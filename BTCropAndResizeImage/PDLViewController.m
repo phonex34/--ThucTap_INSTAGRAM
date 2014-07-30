@@ -152,5 +152,9 @@
 }
 
 - (IBAction)DeleteCache:(id)sender {
+    SDImageCache *imageCache = [SDImageCache sharedImageCache];
+    [imageCache clearMemory];
+    [imageCache clearDisk];
+    [_tableView reloadData];
 }
 @end
