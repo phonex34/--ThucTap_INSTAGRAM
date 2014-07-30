@@ -124,7 +124,7 @@
     float factor = (float)width/320.0;
     [cell.bigImageView setFrame:CGRectMake(0, 50, 320, ((CGFloat)height/factor))];
     cell.bigImageView.contentMode = UIViewContentModeScaleAspectFit;
-    cell.smallImageView.clipsToBounds=YES;
+    [cell bringSubviewToFront:cell.smallImageView];
     [cell initiallizFromdictAtIndex:photo andIndex:indexPath];
     [cell.indicator startAnimating];
     cell.smallImageView.contentMode = UIViewContentModeScaleAspectFit;
@@ -142,11 +142,11 @@
     width = photo.width.intValue;
     height = [photo height].intValue;
     float factor = (float)width/320.0;
-    return (float)((float)(height/factor)+50);
+    return (float)((float)(height/factor)+55);
 }
 
 - (IBAction)reloadData:(id)sender {
-    _photos = nil;
+    [self DeleteCache:self];
     [self startConnection];
     [_tableView reloadData];
 }
