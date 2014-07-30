@@ -111,7 +111,11 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                 <items>
-                                    <barButtonItem title="Reload" id="YfY-m7-G7N"/>
+                                    <barButtonItem title="Reload" id="YfY-m7-G7N">
+                                        <connections>
+                                            <action selector="reloadData:" destination="ZHN-Jg-irM" id="E8S-QI-sOq"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>

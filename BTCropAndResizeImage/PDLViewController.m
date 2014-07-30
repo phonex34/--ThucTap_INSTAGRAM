@@ -146,7 +146,7 @@
 }
 
 - (IBAction)reloadData:(id)sender {
-    _photos = nil;
+    
     [_tableView reloadData];
 }
 @end
