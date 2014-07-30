@@ -150,4 +150,7 @@
     [self startConnection];
     [_tableView reloadData];
 }
+
+- (IBAction)DeleteCache:(id)sender {
+}
 @end

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="k1J-8r-evs">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="k1J-8r-evs">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
@@ -110,10 +110,18 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="LRU-2O-4IS">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <items>
-                                    <barButtonItem title="Reload" id="YfY-m7-G7N">
+                                    <barButtonItem title="Delete Cache" width="135.5" id="5BY-g5-z33">
+                                        <color key="tintColor" red="0.28310111240000002" green="0.4143894273" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
-                                            <action selector="reloadData:" destination="ZHN-Jg-irM" id="E8S-QI-sOq"/>
+                                            <action selector="DeleteCache:" destination="ZHN-Jg-irM" id="lRa-rn-07b"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="uP8-lT-kCb"/>
+                                    <barButtonItem systemItem="refresh" id="YfY-m7-G7N">
+                                        <connections>
+                                            <action selector="reloadData:" destination="ZHN-Jg-irM" id="bzB-aL-htH"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>

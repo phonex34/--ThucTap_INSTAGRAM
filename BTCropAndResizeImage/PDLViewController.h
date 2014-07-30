@@ -15,4 +15,5 @@
 @property (nonatomic,strong) NSURLConnection *conn1;
 @property (nonatomic,strong) NSURLConnection *conn2;
 - (IBAction)reloadData:(id)sender;
+- (IBAction)DeleteCache:(id)sender;
 @end
