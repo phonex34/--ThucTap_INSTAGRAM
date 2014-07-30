@@ -316,7 +316,7 @@ UIButton *btnSingleEdit;
     UIImage *imageResault;
     //call resize image class
     resizeImage *imageResize = [[resizeImage alloc]init];
-    imageResault = [imageResize resizeImage:imageToResize width:320 height:410];
+    imageResault = [imageResize resizeImage:imageToResize width:320 height:430];
     NSData *resizedImageData = [imageResize thumbnailImageData];
     
     

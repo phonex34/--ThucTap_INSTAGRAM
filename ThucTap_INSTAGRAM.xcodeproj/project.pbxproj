@@ -26,7 +26,6 @@
 		66078CEB197DD7510010F575 /* e9.png in Resources */ = {isa = PBXBuildFile; fileRef = 66078CE0197DD7510010F575 /* e9.png */; };
 		66078CEC197DD7510010F575 /* e10.png in Resources */ = {isa = PBXBuildFile; fileRef = 66078CE1197DD7510010F575 /* e10.png */; };
 		66078CED197DD7510010F575 /* e11.png in Resources */ = {isa = PBXBuildFile; fileRef = 66078CE2197DD7510010F575 /* e11.png */; };
-		662EDCD019888E6000552B40 /* backgroundShare.png in Resources */ = {isa = PBXBuildFile; fileRef = 662EDCCE19888E6000552B40 /* backgroundShare.png */; };
 		662EDCD3198890E700552B40 /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = 662EDCD2198890E700552B40 /* share.png */; };
 		6646F095197AD70000A95CDC /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6646F094197AD70000A95CDC /* Social.framework */; };
 		66AEADAD1976D0B700BC34AA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66AEADAC1976D0B700BC34AA /* Foundation.framework */; };
@@ -194,9 +193,9 @@
 		66078CC3197DCD6A0010F575 /* FilterImage */ = {
 			isa = PBXGroup;
 			children = (
-				66078CCC197DCFD40010F575 /* testViewController.h */,
 				2F9A75FE1984F41900AABFD9 /* ImageProcessingCore.h */,
 				2F9A75FF1984F41900AABFD9 /* ImageProcessingCore.m */,
+				66078CCC197DCFD40010F575 /* testViewController.h */,
 				66078CCD197DCFE70010F575 /* testViewController.m */,
 				66078CCA197DCF7D0010F575 /* Filtrr */,
 			);

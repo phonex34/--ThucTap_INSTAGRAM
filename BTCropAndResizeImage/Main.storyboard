@@ -17,7 +17,8 @@
                                 <rect key="frame" x="0.0" y="436" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
-                                    <barButtonItem title="Choose Image" id="Ph3-ck-nHc">
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="BjB-I8-Na4"/>
+                                    <barButtonItem title="choose" id="Ph3-ck-nHc">
                                         <connections>
                                             <action selector="ChooseImageClicked:" destination="vXZ-lx-hvc" id="Q1S-9J-54L"/>
                                         </connections>
@@ -25,7 +26,7 @@
                                 </items>
                             </toolbar>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Auz-K4-FQW">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="410"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="430"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </imageView>
@@ -46,7 +47,7 @@
                                 <action selector="CameraClicked:" destination="vXZ-lx-hvc" id="KNO-IV-H1F"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Crop Now" style="plain" id="tJU-vu-YnV">
+                        <barButtonItem key="rightBarButtonItem" title="crop" width="32" style="plain" id="tJU-vu-YnV">
                             <connections>
                                 <segue destination="j4e-Zf-QS4" kind="push" identifier="filterView" id="zy9-1B-fgC"/>
                             </connections>
@@ -66,7 +67,7 @@
                     </connections>
                 </panGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-546" y="-963"/>
+            <point key="canvasLocation" x="-583" y="-968"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="9UL-e3-sOc">

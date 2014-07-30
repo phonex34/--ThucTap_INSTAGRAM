@@ -82,10 +82,10 @@
             
             //if bottom edge coordinate is greater than or equal to 480
             
-            if (bottomEdgePosition >=410) {
+            if (bottomEdgePosition >=430) {
                 
                 //draw drag view in max bottom position
-                boundView.frame = CGRectMake(0, 90, 320, 320);
+                boundView.frame = CGRectMake(0, 110, 320, 320);
             }
             
         }
