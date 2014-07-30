@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" variant="6xAndEarlier" propertyAccessControl="none" initialViewController="k1J-8r-evs">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="k1J-8r-evs">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
@@ -10,11 +10,11 @@
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="ViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="czQ-Jh-Ej6">
-                                <rect key="frame" x="0.0" y="411" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="436" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
                                     <barButtonItem title="Choose Image" id="Ph3-ck-nHc">
@@ -30,8 +30,8 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </imageView>
                             <view alpha="0.40000000000000002" contentMode="scaleToFill" id="WXc-N4-rik">
-                                <rect key="frame" x="0.0" y="20" width="320" height="320"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="Abh-IR-PVc" appends="YES" id="VxK-9t-mdv"/>
@@ -52,6 +52,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="500"/>
                     <connections>
                         <outlet property="boundView" destination="WXc-N4-rik" id="iMS-o4-8Lb"/>
@@ -72,6 +73,7 @@
             <objects>
                 <tabBarController definesPresentationContext="YES" id="k1J-8r-evs" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="3Mi-ua-aHw">
                         <rect key="frame" x="129" y="330" width="163" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -91,11 +93,11 @@
             <objects>
                 <viewController id="ZHN-Jg-irM" customClass="PDLViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8pL-W3-kAo">
-                        <rect key="frame" x="0.0" y="20" width="320" height="499"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="bHb-SN-Zae">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="499"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <color key="sectionIndexBackgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -104,6 +106,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="mostViewed" id="2T3-Zi-KqG"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="bHb-SN-Zae" id="eWU-xO-E8m"/>
                     </connections>
@@ -118,6 +121,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vz1-ht-2aX" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="featured" id="j0f-h0-UhY"/>
                     <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="490"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="vVt-mm-QgH">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -137,7 +141,7 @@
             <objects>
                 <viewController id="j4e-Zf-QS4" customClass="testViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5iO-zc-lQ3">
-                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="WDz-J5-Z2o">
@@ -145,51 +149,49 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" alwaysBounceHorizontal="YES" showsVerticalScrollIndicator="NO" id="yWK-B5-vEI">
-                                <rect key="frame" x="0.0" y="375" width="321" height="80"/>
+                                <rect key="frame" x="0.0" y="400" width="321" height="80"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                             </scrollView>
-                            <view hidden="YES" contentMode="scaleToFill" id="TN0-Rc-58V">
-                                <rect key="frame" x="-1" y="60" width="321" height="94"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" indicatorStyle="black" id="mpq-x3-ZI2">
+                                <rect key="frame" x="-1" y="276" width="321" height="83"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" white="0.14999999999999999" alpha="1" colorSpace="calibratedWhite"/>
+                            </scrollView>
+                            <view opaque="NO" contentMode="scaleToFill" id="i7Z-JK-yzs">
+                                <rect key="frame" x="0.0" y="357" width="320" height="45"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view hidden="YES" contentMode="scaleToFill" id="Qb6-TT-DMA">
+                                <rect key="frame" x="-1" y="85" width="321" height="94"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <subviews>
-                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-0.5" maxValue="0.5" id="f8H-zp-hmN">
-                                        <rect key="frame" x="22" y="32" width="277" height="31"/>
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-0.5" maxValue="0.5" id="gWt-I6-sas">
+                                        <rect key="frame" x="22" y="26" width="277" height="37"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                         <connections>
-                                            <action selector="changeSliderValue:" destination="j4e-Zf-QS4" eventType="valueChanged" id="WVw-h1-6MD"/>
+                                            <action selector="changeSliderValue:" destination="j4e-Zf-QS4" eventType="valueChanged" id="TI0-xr-Sb6"/>
                                         </connections>
                                     </slider>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <view opaque="NO" contentMode="scaleToFill" id="gl7-JL-ZTj">
-                                <rect key="frame" x="0.0" y="332" width="320" height="45"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" indicatorStyle="black" id="mpq-x3-ZI2">
-                                <rect key="frame" x="-1" y="251" width="321" height="83"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <color key="backgroundColor" white="0.14999999999999999" alpha="1" colorSpace="calibratedWhite"/>
-                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="Pde-0U-2KZ">
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="MaK-og-F2q">
                             <connections>
-                                <segue destination="fM7-ZE-7ej" kind="push" identifier="ShareView" id="Ij1-Nc-NYr"/>
+                                <segue destination="G9F-z2-nit" kind="push" identifier="ShareView" id="esZ-0x-hzL"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="editScrollView" destination="mpq-x3-ZI2" id="gwV-3b-Ap0"/>
                         <outlet property="effectScrollView" destination="yWK-B5-vEI" id="9ip-6D-Adg"/>
-                        <outlet property="imageSlider" destination="f8H-zp-hmN" id="xGC-DG-PCb"/>
-                        <outlet property="imageSliderView" destination="TN0-Rc-58V" id="rRs-pJ-o8V"/>
                         <outlet property="imageView" destination="WDz-J5-Z2o" id="udh-gS-8qn"/>
-                        <outlet property="navigationView" destination="gl7-JL-ZTj" id="bLk-n2-mFz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8p9-wo-VVG" sceneMemberID="firstResponder"/>
@@ -197,146 +199,170 @@
             <point key="canvasLocation" x="-114" y="-963"/>
         </scene>
         <!--Share View Controller-->
-        <scene sceneID="odH-FV-aHS">
+        <scene sceneID="lq8-3x-ZGy">
             <objects>
-                <viewController id="fM7-ZE-7ej" customClass="ShareViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="1Rv-CC-4Qe">
-                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                <viewController id="G9F-z2-nit" customClass="ShareViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4aN-Hu-67J">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="fBu-lM-jcu">
-                                <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="share.png" id="5KW-TW-1M8">
+                                <rect key="frame" x="0.0" y="338" width="320" height="92"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DBy-ia-Mey">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="120"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Zdy-we-SmC">
+                                <rect key="frame" x="10" y="9" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" text="Caption content here to share" id="Zcc-T2-e5H">
-                                <rect key="frame" x="123" y="0.0" width="194" height="120"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" text="Caption content here to share" id="yO2-Vs-gFz">
+                                <rect key="frame" x="118" y="9" width="182" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                             </textView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Tag People" borderStyle="bezel" minimumFontSize="17" id="3id-nP-bx4">
-                                <rect key="frame" x="4" y="128" width="312" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
-                            </textField>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add to photo map" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5fs-KZ-aPZ">
-                                <rect key="frame" x="4" y="166" width="218" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LTTTeam8" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="WtZ-Sj-NmE">
+                                <rect key="frame" x="201" y="391" width="119" height="29"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="tT0-GX-Iag">
-                                <rect key="frame" x="223" y="166" width="79" height="27"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NpK-Ah-8az">
+                                <rect key="frame" x="0.0" y="243" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="blc-hJ-4v3">
+                                <rect key="frame" x="10" y="249" width="138" height="32"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <state key="normal" title="Save Photo" image="save.jpeg">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
-                                    <action selector="switchMapChoose:" destination="fM7-ZE-7ej" eventType="valueChanged" id="SV5-h7-FWK"/>
+                                    <action selector="saveToCameraRollClicked:" destination="G9F-z2-nit" eventType="touchUpInside" id="o3b-xF-sVN"/>
                                 </connections>
-                            </switch>
+                            </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SHARE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ue4-sg-cNL">
-                                <rect key="frame" x="4" y="345" width="316" height="21"/>
+                                <rect key="frame" x="10" y="309" width="306" height="21"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Rlb-rX-TLh">
-                                <rect key="frame" x="7" y="378" width="144" height="32"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Nej-Ne-zOe">
+                                <rect key="frame" x="10" y="386" width="144" height="39"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <color key="backgroundColor" red="0.24900995022802222" green="0.66847826086956519" blue="0.083924687000357656" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Facebook" image="facebook.png" backgroundImage="button-blogs-150x32.png">
-                                    <color key="titleColor" red="0.057313162090000001" green="0.02248342763" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" cocoaTouchSystemColor="darkTextColor"/>
-                                </state>
-                                <connections>
-                                    <action selector="FacebookClicked:" destination="fM7-ZE-7ej" eventType="touchUpInside" id="cWg-0E-eUl"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="2Yv-Q9-CGm">
-                                <rect key="frame" x="162" y="378" width="140" height="32"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <color key="backgroundColor" red="0.2490099502" green="0.66847826089999995" blue="0.083924686999999998" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Twitter" image="twitter.jpeg" backgroundImage="button-blogs-150x32.png">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                    <color key="titleShadowColor" cocoaTouchSystemColor="darkTextColor"/>
-                                </state>
-                                <connections>
-                                    <action selector="TwitterClicked:" destination="fM7-ZE-7ej" eventType="touchUpInside" id="GVT-IM-TyG"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="7Hp-W1-dlJ">
-                                <rect key="frame" x="7" y="419" width="144" height="32"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <color key="backgroundColor" red="0.2490099502" green="0.66847826089999995" blue="0.083924686999999998" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="SinaWeibo" image="weibo.png" backgroundImage="button-blogs-150x32.png">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="SinaWeiboClicked:" destination="fM7-ZE-7ej" eventType="touchUpInside" id="kKa-Ke-vSW"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="h2a-CZ-ZgF">
-                                <rect key="frame" x="162" y="419" width="140" height="32"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <color key="backgroundColor" red="0.2490099502" green="0.66847826089999995" blue="0.083924686999999998" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="LTTTeam8" image="LTTTeam8.png" backgroundImage="button-blogs-150x32.png">
-                                    <color key="titleColor" red="0.057313162090000001" green="0.02248342763" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" cocoaTouchSystemColor="darkTextColor"/>
-                                </state>
-                                <connections>
-                                    <action selector="LTTTeam8Clicked:" destination="fM7-ZE-7ej" eventType="touchUpInside" id="Et0-4S-dlV"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Save To Camera Roll" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8ni-e4-ibn">
-                                <rect key="frame" x="4" y="305" width="225" height="21"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hBT-IF-rNT">
-                                <rect key="frame" x="189" y="299" width="113" height="32"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weibo" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="b6f-kT-G7C">
+                                <rect key="frame" x="57" y="396" width="86" height="21"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <state key="normal" title="Save" image="save.jpeg" backgroundImage="button-blogs-150x32.png">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" alpha="0.40000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="sBv-Pu-cai">
+                                <rect key="frame" x="17" y="395" width="22" height="25"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" image="weibo.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" alpha="0.050000000000000003" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="xI8-qJ-ciB">
+                                <rect key="frame" x="0.0" y="338" width="154" height="45"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="saveToCameraRollClicked:" destination="fM7-ZE-7ej" eventType="touchUpInside" id="Vkj-DI-TDg"/>
+                                    <action selector="FacebookClicked:" destination="G9F-z2-nit" eventType="touchUpInside" id="Lrq-Hk-nsV"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" alpha="0.050000000000000003" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="fGs-gn-mWY">
+                                <rect key="frame" x="162" y="339" width="158" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="TwitterClicked:" destination="G9F-z2-nit" eventType="touchUpInside" id="dlK-8y-HhB"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" alpha="0.050000000000000003" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="egB-LW-JZo">
+                                <rect key="frame" x="162" y="386" width="158" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="LTTTeam8Clicked:" destination="G9F-z2-nit" eventType="touchUpInside" id="LNS-cj-Fdh"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" alpha="0.050000000000000003" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="3Cl-Xg-QcS">
+                                <rect key="frame" x="0.0" y="386" width="158" height="45"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="SinaWeiboClicked:" destination="G9F-z2-nit" eventType="touchUpInside" id="roJ-zw-DeJ"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SAVE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HtJ-Ue-yNv">
+                                <rect key="frame" x="10" y="214" width="306" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.90219514266304346" green="0.90219514266304346" blue="0.90219514266304346" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" id="oL5-Re-LeG">
-                        <barButtonItem key="rightBarButtonItem" title="Upload Image" id="vdx-qp-fJA"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="pLg-Ll-bey"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
-                        <outlet property="LTTTeam8" destination="h2a-CZ-ZgF" id="gyd-wd-r3e"/>
-                        <outlet property="btnFacebook" destination="Rlb-rX-TLh" id="3cr-qS-k4h"/>
-                        <outlet property="btnSave" destination="hBT-IF-rNT" id="EZ2-2g-R9g"/>
-                        <outlet property="btnSinaWeibo" destination="7Hp-W1-dlJ" id="VZe-HH-jHS"/>
-                        <outlet property="btnTwitter" destination="2Yv-Q9-CGm" id="0OE-rE-gAv"/>
-                        <outlet property="imageView" destination="fBu-lM-jcu" id="9Q8-wK-D7W"/>
-                        <outlet property="switchMap" destination="tT0-GX-Iag" id="GyM-cv-Jg9"/>
-                        <outlet property="textField" destination="3id-nP-bx4" id="BXb-vO-aLR"/>
-                        <outlet property="textView" destination="Zcc-T2-e5H" id="BYX-Sq-NoW"/>
+                        <outlet property="LTTTeam8" destination="egB-LW-JZo" id="0Pe-tF-ZOP"/>
+                        <outlet property="btnFacebook" destination="xI8-qJ-ciB" id="oAr-3L-MGu"/>
+                        <outlet property="btnSave" destination="blc-hJ-4v3" id="1LC-ah-OZp"/>
+                        <outlet property="btnSinaWeibo" destination="3Cl-Xg-QcS" id="MuC-mm-SCr"/>
+                        <outlet property="btnTwitter" destination="fGs-gn-mWY" id="iia-0V-nSU"/>
+                        <outlet property="imageView" destination="Zdy-we-SmC" id="EbF-Eg-XED"/>
+                        <outlet property="textView" destination="yO2-Vs-gFz" id="Ekn-Se-kJ0"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8Xg-UI-0oX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NXl-eB-pjm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="268" y="-963"/>
+            <point key="canvasLocation" x="255" y="-963"/>
         </scene>
     </scenes>
     <resources>
-        <image name="LTTTeam8.png" width="32" height="32"/>
-        <image name="button-blogs-150x32.png" width="150" height="32"/>
-        <image name="facebook.png" width="32" height="32"/>
         <image name="save.jpeg" width="32" height="32"/>
-        <image name="twitter.jpeg" width="32" height="32"/>
+        <image name="share.png" width="320" height="93"/>
         <image name="weibo.png" width="32" height="32"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
