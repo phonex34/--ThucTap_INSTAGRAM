@@ -32,8 +32,8 @@
 
 -(void) initiallizFromdictAtIndex:(PDLPhotos *) object andIndex:(NSIndexPath *)indexPath{
 
-    labelUser.text = object.username;
-    labelTitle.text = object.title;
+    labelUser.text = [object username];
+    labelTitle.text = [object title];
     labelDate.text = object.dateTaken;
     [smallImageView setImageWithURL:[NSURL URLWithString:[object avatar]] placeholderImage:[UIImage imageNamed: @"placeholder.png"]];
     [bigImageView setImageWithURL:[NSURL URLWithString:[object bigPhoto]] placeholderImage:[UIImage imageNamed:@"placeholder.png"] options:0 progress:^(NSUInteger receivedSize, long long expectedSize) {
@@ -47,8 +47,7 @@
         
         [indicator stopAnimating];
         indicator.hidden = YES;
-        bigImageView.contentMode = UIViewContentModeScaleAspectFit;
-        bigImageView.clipsToBounds = YES;
+//        bigImageView.clipsToBounds = YES;
         progressBar.hidden = YES;
     }
      ];
