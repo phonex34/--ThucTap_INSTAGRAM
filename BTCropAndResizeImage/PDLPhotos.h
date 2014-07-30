@@ -14,5 +14,7 @@
 @property (strong,nonatomic) NSString *dateTaken;
 @property (strong, nonatomic) NSString  *title;
 @property (strong, nonatomic) NSString *bigPhoto;
+@property (retain, nonatomic) NSNumber *width;
+@property (retain,nonatomic) NSNumber *height;
 -(id) initFromDictionary : (NSMutableDictionary *) dictionary;
 @end
