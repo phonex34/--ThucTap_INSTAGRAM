@@ -14,7 +14,8 @@
 @synthesize dateTaken = _dateTaken;
 @synthesize bigPhoto = _bigPhoto;
 @synthesize username = _username;
-
+@synthesize width = _width;
+@synthesize height = _height;
 
 - (id) init {
     
@@ -27,6 +28,8 @@
     _dateTaken = [dictionary objectForKey:@"taken_on"];
     _title = [dictionary objectForKey:@"location"];
     _bigPhoto = [dictionary objectForKey:@"image_list_url"];
+    _height = (NSNumber*)[dictionary objectForKey:@"height"];
+    _width = (NSNumber*)[dictionary objectForKey:@"width"];
     return self;
 }
 @end

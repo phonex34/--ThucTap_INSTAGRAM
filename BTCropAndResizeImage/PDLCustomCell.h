@@ -7,12 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "PDLPhotos.h"
 @interface PDLCustomCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicator;
+@property (retain, nonatomic) IBOutlet UIProgressView *progressBar;
 @property (weak, nonatomic) IBOutlet UILabel *labelUser;
 @property (weak, nonatomic) IBOutlet UILabel *labelDate;
 @property (weak, nonatomic) IBOutlet UILabel *labelTitle;
 @property (weak, nonatomic) IBOutlet UIImageView *bigImageView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *indicator;
 @property (weak, nonatomic) IBOutlet UIImageView *smallImageView;
+
+-(void) initiallizFromdictAtIndex : (PDLPhotos *)object andIndex:(NSIndexPath *) indexPath;
 @end

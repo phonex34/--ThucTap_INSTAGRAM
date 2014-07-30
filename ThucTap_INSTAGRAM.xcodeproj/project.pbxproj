@@ -44,12 +44,7 @@
 		66AEADD81976D0B900BC34AA /* ThucTap_INSTAGRAMTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 66AEADD71976D0B900BC34AA /* ThucTap_INSTAGRAMTests.m */; };
 		66AEADE41976D3FA00BC34AA /* resizeImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 66AEADE31976D3FA00BC34AA /* resizeImage.m */; };
 		66B927911980B7FA00BA0D5D /* UIImage+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B927901980B7FA00BA0D5D /* UIImage+Extra.m */; };
-		66DC7BFB1980A0560065AD27 /* big.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 66DC7BF11980A0560065AD27 /* big.jpg */; };
 		66DC7BFC1980A0560065AD27 /* PDLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 66DC7BF31980A0560065AD27 /* PDLAppDelegate.m */; };
-		66DC7BFD1980A0560065AD27 /* PDLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66DC7BF51980A0560065AD27 /* PDLViewController.m */; };
-		66DC7BFE1980A0560065AD27 /* PDLCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 66DC7BF71980A0560065AD27 /* PDLCustomCell.m */; };
-		66DC7BFF1980A0560065AD27 /* PDLCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66DC7BF81980A0560065AD27 /* PDLCustomCell.xib */; };
-		66DC7C001980A0560065AD27 /* PDLPhotos.m in Sources */ = {isa = PBXBuildFile; fileRef = 66DC7BFA1980A0560065AD27 /* PDLPhotos.m */; };
 		66DC7C021980A1630065AD27 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66DC7C011980A1620065AD27 /* SDWebImage.framework */; };
 		66DC7C041980A2A70065AD27 /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 66DC7C031980A2A70065AD27 /* placeholder.png */; };
 		66DC7C061980AADF0065AD27 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66DC7C051980AADF0065AD27 /* ImageIO.framework */; };
@@ -68,6 +63,11 @@
 		66F29A95197E33AA006FA8C5 /* images5.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 66F29A8E197E33AA006FA8C5 /* images5.jpeg */; };
 		66F29A96197E33AA006FA8C5 /* images.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 66F29A8F197E33AA006FA8C5 /* images.jpeg */; };
 		66FD9C7A19801BDD00DEF19D /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66FD9C7919801BDD00DEF19D /* ShareViewController.m */; };
+		C0CC318919889B4300242850 /* PDLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0CC318819889B4300242850 /* PDLViewController.m */; };
+		C0CC318C19889B8200242850 /* PDLCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C0CC318B19889B8200242850 /* PDLCustomCell.m */; };
+		C0CC319019889BC800242850 /* PDLCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0CC318D19889BC800242850 /* PDLCustomCell.xib */; };
+		C0CC319119889BC800242850 /* PDLPhotos.m in Sources */ = {isa = PBXBuildFile; fileRef = C0CC318F19889BC800242850 /* PDLPhotos.m */; };
+		C0CC319719889C1500242850 /* PDLProcessConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = C0CC319619889C1500242850 /* PDLProcessConnection.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,16 +130,8 @@
 		66AEADE31976D3FA00BC34AA /* resizeImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = resizeImage.m; sourceTree = "<group>"; };
 		66B9278F1980B7FA00BA0D5D /* UIImage+Extra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extra.h"; sourceTree = "<group>"; };
 		66B927901980B7FA00BA0D5D /* UIImage+Extra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extra.m"; sourceTree = "<group>"; };
-		66DC7BF11980A0560065AD27 /* big.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = big.jpg; sourceTree = "<group>"; };
 		66DC7BF21980A0560065AD27 /* PDLAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDLAppDelegate.h; sourceTree = "<group>"; };
 		66DC7BF31980A0560065AD27 /* PDLAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDLAppDelegate.m; sourceTree = "<group>"; };
-		66DC7BF41980A0560065AD27 /* PDLViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDLViewController.h; sourceTree = "<group>"; };
-		66DC7BF51980A0560065AD27 /* PDLViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDLViewController.m; sourceTree = "<group>"; };
-		66DC7BF61980A0560065AD27 /* PDLCustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDLCustomCell.h; sourceTree = "<group>"; };
-		66DC7BF71980A0560065AD27 /* PDLCustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDLCustomCell.m; sourceTree = "<group>"; };
-		66DC7BF81980A0560065AD27 /* PDLCustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PDLCustomCell.xib; sourceTree = "<group>"; };
-		66DC7BF91980A0560065AD27 /* PDLPhotos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDLPhotos.h; sourceTree = "<group>"; };
-		66DC7BFA1980A0560065AD27 /* PDLPhotos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDLPhotos.m; sourceTree = "<group>"; };
 		66DC7C011980A1620065AD27 /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SDWebImage.framework; sourceTree = "<group>"; };
 		66DC7C031980A2A70065AD27 /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
 		66DC7C051980AADF0065AD27 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
@@ -159,6 +151,15 @@
 		66F29A8F197E33AA006FA8C5 /* images.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = images.jpeg; sourceTree = "<group>"; };
 		66FD9C7819801BDD00DEF19D /* ShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareViewController.h; sourceTree = "<group>"; };
 		66FD9C7919801BDD00DEF19D /* ShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareViewController.m; sourceTree = "<group>"; };
+		C0CC318719889B4300242850 /* PDLViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDLViewController.h; sourceTree = "<group>"; };
+		C0CC318819889B4300242850 /* PDLViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDLViewController.m; sourceTree = "<group>"; };
+		C0CC318A19889B8200242850 /* PDLCustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDLCustomCell.h; sourceTree = "<group>"; };
+		C0CC318B19889B8200242850 /* PDLCustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDLCustomCell.m; sourceTree = "<group>"; };
+		C0CC318D19889BC800242850 /* PDLCustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PDLCustomCell.xib; sourceTree = "<group>"; };
+		C0CC318E19889BC800242850 /* PDLPhotos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDLPhotos.h; sourceTree = "<group>"; };
+		C0CC318F19889BC800242850 /* PDLPhotos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDLPhotos.m; sourceTree = "<group>"; };
+		C0CC319519889C1500242850 /* PDLProcessConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDLProcessConnection.h; sourceTree = "<group>"; };
+		C0CC319619889C1500242850 /* PDLProcessConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDLProcessConnection.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -282,6 +283,7 @@
 		66AEADB31976D0B700BC34AA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				66DC7C031980A2A70065AD27 /* placeholder.png */,
 				66AEADEB1976D84F00BC34AA /* Images */,
 				66AEADB41976D0B700BC34AA /* ThucTap_INSTAGRAM-Info.plist */,
 				66AEADB51976D0B700BC34AA /* InfoPlist.strings */,
@@ -356,17 +358,10 @@
 		66DC7BF01980A0160065AD27 /* PDLHome */ = {
 			isa = PBXGroup;
 			children = (
-				66DC7C031980A2A70065AD27 /* placeholder.png */,
-				66DC7BF11980A0560065AD27 /* big.jpg */,
-				66DC7BF21980A0560065AD27 /* PDLAppDelegate.h */,
-				66DC7BF31980A0560065AD27 /* PDLAppDelegate.m */,
-				66DC7BF41980A0560065AD27 /* PDLViewController.h */,
-				66DC7BF51980A0560065AD27 /* PDLViewController.m */,
-				66DC7BF61980A0560065AD27 /* PDLCustomCell.h */,
-				66DC7BF71980A0560065AD27 /* PDLCustomCell.m */,
-				66DC7BF81980A0560065AD27 /* PDLCustomCell.xib */,
-				66DC7BF91980A0560065AD27 /* PDLPhotos.h */,
-				66DC7BFA1980A0560065AD27 /* PDLPhotos.m */,
+				C0CC319819889C1700242850 /* Process Data */,
+				C0CC319319889BDD00242850 /* Custom Cell */,
+				C0CC319219889BCF00242850 /* Photo Class */,
+				C0CC319419889BEA00242850 /* PDLViewController */,
 			);
 			name = PDLHome;
 			sourceTree = "<group>";
@@ -378,6 +373,45 @@
 				66FD9C7919801BDD00DEF19D /* ShareViewController.m */,
 			);
 			name = SaveAndShare;
+			sourceTree = "<group>";
+		};
+		C0CC319219889BCF00242850 /* Photo Class */ = {
+			isa = PBXGroup;
+			children = (
+				C0CC318E19889BC800242850 /* PDLPhotos.h */,
+				C0CC318F19889BC800242850 /* PDLPhotos.m */,
+			);
+			name = "Photo Class";
+			sourceTree = "<group>";
+		};
+		C0CC319319889BDD00242850 /* Custom Cell */ = {
+			isa = PBXGroup;
+			children = (
+				C0CC318D19889BC800242850 /* PDLCustomCell.xib */,
+				C0CC318A19889B8200242850 /* PDLCustomCell.h */,
+				C0CC318B19889B8200242850 /* PDLCustomCell.m */,
+			);
+			name = "Custom Cell";
+			sourceTree = "<group>";
+		};
+		C0CC319419889BEA00242850 /* PDLViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C0CC318719889B4300242850 /* PDLViewController.h */,
+				C0CC318819889B4300242850 /* PDLViewController.m */,
+				66DC7BF21980A0560065AD27 /* PDLAppDelegate.h */,
+				66DC7BF31980A0560065AD27 /* PDLAppDelegate.m */,
+			);
+			name = PDLViewController;
+			sourceTree = "<group>";
+		};
+		C0CC319819889C1700242850 /* Process Data */ = {
+			isa = PBXGroup;
+			children = (
+				C0CC319519889C1500242850 /* PDLProcessConnection.h */,
+				C0CC319619889C1500242850 /* PDLProcessConnection.m */,
+			);
+			name = "Process Data";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -470,6 +504,7 @@
 				66F29A92197E33AA006FA8C5 /* images2.jpeg in Resources */,
 				66F1D9161981010D007A6A27 /* LTTTeam8.png in Resources */,
 				66078CE6197DD7510010F575 /* e4.png in Resources */,
+				C0CC319019889BC800242850 /* PDLCustomCell.xib in Resources */,
 				66AEADB71976D0B700BC34AA /* InfoPlist.strings in Resources */,
 				66F29A93197E33AA006FA8C5 /* images3.jpeg in Resources */,
 				66DC7C041980A2A70065AD27 /* placeholder.png in Resources */,
@@ -480,10 +515,7 @@
 				66078CE9197DD7510010F575 /* e7.png in Resources */,
 				66F1D91B19810203007A6A27 /* weibo.png in Resources */,
 				66F1D9191981010D007A6A27 /* twitter.jpeg in Resources */,
-				66DC7BFF1980A0560065AD27 /* PDLCustomCell.xib in Resources */,
 				66F29A96197E33AA006FA8C5 /* images.jpeg in Resources */,
-				662EDCD019888E6000552B40 /* backgroundShare.png in Resources */,
-				66DC7BFB1980A0560065AD27 /* big.jpg in Resources */,
 				66F1D9111980FC6E007A6A27 /* connectfb.png in Resources */,
 				66078CE4197DD7510010F575 /* e2.png in Resources */,
 				66078CEA197DD7510010F575 /* e8.png in Resources */,
@@ -507,21 +539,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0CC319719889C1500242850 /* PDLProcessConnection.m in Sources */,
 				66078CD0197DCFF80010F575 /* UIImage+Scale.m in Sources */,
 				66078CCE197DCFE70010F575 /* testViewController.m in Sources */,
-				66DC7C001980A0560065AD27 /* PDLPhotos.m in Sources */,
 				66DC7BFC1980A0560065AD27 /* PDLAppDelegate.m in Sources */,
 				66AEADC31976D0B800BC34AA /* ViewController.m in Sources */,
-				66DC7BFD1980A0560065AD27 /* PDLViewController.m in Sources */,
 				66AEADE41976D3FA00BC34AA /* resizeImage.m in Sources */,
 				66078CD3197DD0050010F575 /* UIImage+FiltrrCompositions.m in Sources */,
 				2F9A76001984F41900AABFD9 /* ImageProcessingCore.m in Sources */,
+				C0CC318919889B4300242850 /* PDLViewController.m in Sources */,
 				66078CD6197DD00F0010F575 /* UIImage+Filtrr.m in Sources */,
 				66AEADBD1976D0B700BC34AA /* AppDelegate.m in Sources */,
+				C0CC319119889BC800242850 /* PDLPhotos.m in Sources */,
 				66B927911980B7FA00BA0D5D /* UIImage+Extra.m in Sources */,
 				66FD9C7A19801BDD00DEF19D /* ShareViewController.m in Sources */,
+				C0CC318C19889B8200242850 /* PDLCustomCell.m in Sources */,
 				66AEADB91976D0B700BC34AA /* main.m in Sources */,
-				66DC7BFE1980A0560065AD27 /* PDLCustomCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
