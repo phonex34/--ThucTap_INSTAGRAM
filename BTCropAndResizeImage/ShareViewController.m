@@ -13,7 +13,7 @@
 @end
 
 @implementation ShareViewController
-@synthesize lkImage,imageView,textField,textView;
+@synthesize lkImage,imageView,textView;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -27,7 +27,6 @@
 {
     [super viewDidLoad];
     imageView.image = lkImage;
-    textField.delegate = self;
     textView.delegate = self;
 ////    pickerView.delegate = self;
 ////    pickerView.dataSource = self;
@@ -56,16 +55,9 @@
 //set keboard and return button
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    [textField resignFirstResponder];
     [textView resignFirstResponder];
 }
--(BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    if (self.textField) {
-        [self.textField resignFirstResponder];
-    }
-    return NO;
-}
+
 -(BOOL)textViewShouldReturn:(UITextView *)textView
 {
     if (self.textView) {
@@ -74,26 +66,27 @@
     return NO;
 }
 
+#pragma mark textField
 //set location for textField when keyBoard appear
--(void)textFieldDidBeginEditing:(UITextField *)textField
-{
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDelegate:self];
-    [UIView setAnimationDuration:0.2];
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    self.view.frame =CGRectMake(self.view.frame.origin.x, (self.view.frame.origin.y-10), self.view.frame.size.width, self.view.frame.size.height);
-    [UIView commitAnimations];
-}
--(void)textFieldDidEndEditing:(UITextField *)textField
-{
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDelegate:self];
-    [UIView setAnimationDuration:0.2];
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    self.view.frame =CGRectMake(self.view.frame.origin.x, (self.view.frame.origin.y+10), self.view.frame.size.width, self.view.frame.size.height);
-    [UIView commitAnimations];
-    
-}
+//-(void)textFieldDidBeginEditing:(UITextField *)textField
+//{
+//    [UIView beginAnimations:nil context:NULL];
+//    [UIView setAnimationDelegate:self];
+//    [UIView setAnimationDuration:0.2];
+//    [UIView setAnimationBeginsFromCurrentState:YES];
+//    self.view.frame =CGRectMake(self.view.frame.origin.x, (self.view.frame.origin.y-10), self.view.frame.size.width, self.view.frame.size.height);
+//    [UIView commitAnimations];
+//}
+//-(void)textFieldDidEndEditing:(UITextField *)textField
+//{
+//    [UIView beginAnimations:nil context:NULL];
+//    [UIView setAnimationDelegate:self];
+//    [UIView setAnimationDuration:0.2];
+//    [UIView setAnimationBeginsFromCurrentState:YES];
+//    self.view.frame =CGRectMake(self.view.frame.origin.x, (self.view.frame.origin.y+10), self.view.frame.size.width, self.view.frame.size.height);
+//    [UIView commitAnimations];
+//    
+//}
 ////handle with picker view
 //-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 //{
@@ -180,9 +173,12 @@
             break;
             
         case 4:
-            NSLog(@"Share to LTTTeam8");
+        {
+            UIAlertView *LTTTeam8_Upload = [[UIAlertView alloc] initWithTitle:@"UPLOAD TO LTTTeam8_SERVER" message:@"Action for UPLOAD" delegate:self cancelButtonTitle:@"CANCEL" otherButtonTitles:@"UPLOAD", nil];
+            [LTTTeam8_Upload setAlertViewStyle:UIAlertViewStyleDefault];
+            [LTTTeam8_Upload show];
             break;
-            
+        }
         default:
             NSLog(@"None");
             break;
@@ -238,9 +234,6 @@
 }
 - (IBAction)LTTTeam8Clicked:(id)sender {
     [self shareToInternet:4];
-}
-- (IBAction)switchMapChoose:(id)sender {
-    NSLog(@"Change SwitchMap");
 }
 
 

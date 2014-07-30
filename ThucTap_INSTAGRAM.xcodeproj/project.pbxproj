@@ -26,6 +26,8 @@
 		66078CEB197DD7510010F575 /* e9.png in Resources */ = {isa = PBXBuildFile; fileRef = 66078CE0197DD7510010F575 /* e9.png */; };
 		66078CEC197DD7510010F575 /* e10.png in Resources */ = {isa = PBXBuildFile; fileRef = 66078CE1197DD7510010F575 /* e10.png */; };
 		66078CED197DD7510010F575 /* e11.png in Resources */ = {isa = PBXBuildFile; fileRef = 66078CE2197DD7510010F575 /* e11.png */; };
+		662EDCD019888E6000552B40 /* backgroundShare.png in Resources */ = {isa = PBXBuildFile; fileRef = 662EDCCE19888E6000552B40 /* backgroundShare.png */; };
+		662EDCD3198890E700552B40 /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = 662EDCD2198890E700552B40 /* share.png */; };
 		6646F095197AD70000A95CDC /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6646F094197AD70000A95CDC /* Social.framework */; };
 		66AEADAD1976D0B700BC34AA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66AEADAC1976D0B700BC34AA /* Foundation.framework */; };
 		66AEADAF1976D0B700BC34AA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66AEADAE1976D0B700BC34AA /* CoreGraphics.framework */; };
@@ -103,6 +105,8 @@
 		66078CE0197DD7510010F575 /* e9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = e9.png; sourceTree = "<group>"; };
 		66078CE1197DD7510010F575 /* e10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = e10.png; sourceTree = "<group>"; };
 		66078CE2197DD7510010F575 /* e11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = e11.png; sourceTree = "<group>"; };
+		662EDCCE19888E6000552B40 /* backgroundShare.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundShare.png; sourceTree = "<group>"; };
+		662EDCD2198890E700552B40 /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
 		6646F094197AD70000A95CDC /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		66AEADA91976D0B700BC34AA /* ThucTap_INSTAGRAM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThucTap_INSTAGRAM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66AEADAC1976D0B700BC34AA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -318,6 +322,8 @@
 		66AEADEB1976D84F00BC34AA /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				662EDCD2198890E700552B40 /* share.png */,
+				662EDCCE19888E6000552B40 /* backgroundShare.png */,
 				66F1D91E198118D8007A6A27 /* button-blogs-150x32.png */,
 				66F1D91A19810203007A6A27 /* weibo.png */,
 				66F1D9121981010D007A6A27 /* LTTTeam8.png */,
@@ -454,6 +460,7 @@
 				66078CED197DD7510010F575 /* e11.png in Resources */,
 				66078CEB197DD7510010F575 /* e9.png in Resources */,
 				66F29A90197E33AA006FA8C5 /* download.jpeg in Resources */,
+				662EDCD3198890E700552B40 /* share.png in Resources */,
 				66078CE8197DD7510010F575 /* e6.png in Resources */,
 				66078CE3197DD7510010F575 /* e1.png in Resources */,
 				66078CE7197DD7510010F575 /* e5.png in Resources */,
@@ -475,6 +482,7 @@
 				66F1D9191981010D007A6A27 /* twitter.jpeg in Resources */,
 				66DC7BFF1980A0560065AD27 /* PDLCustomCell.xib in Resources */,
 				66F29A96197E33AA006FA8C5 /* images.jpeg in Resources */,
+				662EDCD019888E6000552B40 /* backgroundShare.png in Resources */,
 				66DC7BFB1980A0560065AD27 /* big.jpg in Resources */,
 				66F1D9111980FC6E007A6A27 /* connectfb.png in Resources */,
 				66078CE4197DD7510010F575 /* e2.png in Resources */,
