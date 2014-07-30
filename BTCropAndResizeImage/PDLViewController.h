@@ -8,12 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PDLViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,NSURLConnectionDataDelegate,NSURLConnectionDelegate>
+@interface PDLViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property(nonatomic,assign) NSString *token;
-@property (nonatomic,strong)  NSURLConnection *connection;
-@property (nonatomic,strong)  NSURLConnection *connection1;
-@property (nonatomic, strong) NSMutableURLRequest *request1;
-@property (nonatomic, strong) NSMutableURLRequest *request;
-@property (nonatomic, retain) NSMutableData *receivedData;
+
+- (IBAction)reloadData:(id)sender;
 @end
