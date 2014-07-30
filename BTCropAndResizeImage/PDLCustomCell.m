@@ -47,7 +47,6 @@
         
         [indicator stopAnimating];
         indicator.hidden = YES;
-//        bigImageView.clipsToBounds = YES;
         progressBar.hidden = YES;
     }
      ];
