@@ -42,7 +42,6 @@
 		66AEADD81976D0B900BC34AA /* ThucTap_INSTAGRAMTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 66AEADD71976D0B900BC34AA /* ThucTap_INSTAGRAMTests.m */; };
 		66AEADE41976D3FA00BC34AA /* resizeImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 66AEADE31976D3FA00BC34AA /* resizeImage.m */; };
 		66B927911980B7FA00BA0D5D /* UIImage+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B927901980B7FA00BA0D5D /* UIImage+Extra.m */; };
-		66DC7BFB1980A0560065AD27 /* big.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 66DC7BF11980A0560065AD27 /* big.jpg */; };
 		66DC7BFC1980A0560065AD27 /* PDLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 66DC7BF31980A0560065AD27 /* PDLAppDelegate.m */; };
 		66DC7BFD1980A0560065AD27 /* PDLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66DC7BF51980A0560065AD27 /* PDLViewController.m */; };
 		66DC7BFE1980A0560065AD27 /* PDLCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 66DC7BF71980A0560065AD27 /* PDLCustomCell.m */; };
@@ -126,7 +125,6 @@
 		66AEADE31976D3FA00BC34AA /* resizeImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = resizeImage.m; sourceTree = "<group>"; };
 		66B9278F1980B7FA00BA0D5D /* UIImage+Extra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extra.h"; sourceTree = "<group>"; };
 		66B927901980B7FA00BA0D5D /* UIImage+Extra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extra.m"; sourceTree = "<group>"; };
-		66DC7BF11980A0560065AD27 /* big.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = big.jpg; sourceTree = "<group>"; };
 		66DC7BF21980A0560065AD27 /* PDLAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDLAppDelegate.h; sourceTree = "<group>"; };
 		66DC7BF31980A0560065AD27 /* PDLAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDLAppDelegate.m; sourceTree = "<group>"; };
 		66DC7BF41980A0560065AD27 /* PDLViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDLViewController.h; sourceTree = "<group>"; };
@@ -351,7 +349,6 @@
 			isa = PBXGroup;
 			children = (
 				66DC7C031980A2A70065AD27 /* placeholder.png */,
-				66DC7BF11980A0560065AD27 /* big.jpg */,
 				66DC7BF21980A0560065AD27 /* PDLAppDelegate.h */,
 				66DC7BF31980A0560065AD27 /* PDLAppDelegate.m */,
 				66DC7BF41980A0560065AD27 /* PDLViewController.h */,
@@ -475,7 +472,6 @@
 				66F1D9191981010D007A6A27 /* twitter.jpeg in Resources */,
 				66DC7BFF1980A0560065AD27 /* PDLCustomCell.xib in Resources */,
 				66F29A96197E33AA006FA8C5 /* images.jpeg in Resources */,
-				66DC7BFB1980A0560065AD27 /* big.jpg in Resources */,
 				66F1D9111980FC6E007A6A27 /* connectfb.png in Resources */,
 				66078CE4197DD7510010F575 /* e2.png in Resources */,
 				66078CEA197DD7510010F575 /* e8.png in Resources */,
