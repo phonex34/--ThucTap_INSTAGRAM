@@ -178,7 +178,7 @@
 }
 
 - (IBAction)reloadData:(id)sender {
-    [self DeleteCache:self];
+ 
     [self startConnection];
     [_tableView reloadData];
 }
