@@ -141,7 +141,7 @@
     }
     else
     {
-    cell.bigImageView.contentMode = UIViewContentModeScaleAspectFit;
+    cell.bigImageView.contentMode = UIViewContentModeScaleAspectFill;
     [cell.bigImageView setFrame:CGRectMake(0, 50, 320,320*factor)];
     }
     [cell bringSubviewToFront:cell.smallImageView];
