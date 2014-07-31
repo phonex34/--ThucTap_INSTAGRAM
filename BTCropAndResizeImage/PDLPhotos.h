@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface PDLPhotos : NSObject
+@property (strong,nonatomic) NSString *ids;
 @property (strong, nonatomic) NSString *avatar;
 @property (strong, nonatomic) NSString *username;
 @property (strong,nonatomic) NSString *dateTaken;

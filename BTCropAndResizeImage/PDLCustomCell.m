@@ -40,7 +40,6 @@
         
         float number = (float)receivedSize/(float)expectedSize;
         progressBar.progress = number;
-        NSLog(@"data received : %lld",expectedSize);
         [indicator startAnimating];
         
     } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {

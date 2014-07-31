@@ -71,7 +71,7 @@
         NSMutableDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:_receivedData options:kNilOptions error:&er];
         NSDictionary *secondDict = [dataDictionary objectForKey:@"data"];
         _token= [secondDict objectForKey:@"auth_token"];
-        NSString *postString = [NSString stringWithFormat:@"http://beta.pashadelic.com/api/v1/countries/1233/photos.json"];
+        NSString *postString = [NSString stringWithFormat:@"http://beta.pashadelic.com/api/v1/users/2765.json"];
         NSMutableURLRequest *_request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:postString] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
         [_request setHTTPMethod:@"GET"];
         [_request setValue:_token  forHTTPHeaderField:@"X-AUTH-TOKEN"];
@@ -82,7 +82,8 @@
         NSError *er = nil;
         NSMutableDictionary *finalData = [NSJSONSerialization JSONObjectWithData:_receivedData options:kNilOptions error:&er];
         NSMutableDictionary *dataDict = [finalData objectForKey:@"data"];
-        NSMutableArray *dataArray = [dataDict objectForKey:@"photos"];
+        NSMutableDictionary *dataDict2 = [dataDict objectForKey:@"user"];
+        NSMutableArray *dataArray = [dataDict2 objectForKey:@"photos"];
         _photos = [[NSMutableArray alloc] init];
         for (int i = 0; i < dataArray.count; i++) {
             NSMutableDictionary *dictTemp = [dataArray objectAtIndex:i];
@@ -126,29 +127,30 @@
         cell = (PDLCustomCell *)[nib objectAtIndex:0];
     }
     PDLPhotos *photo = [_photos objectAtIndex:indexPath.row];
+    [cell initiallizFromdictAtIndex:photo andIndex:indexPath];
     int width = 0;
     int height = 0;
-    float a = 0.00000;
-    width = photo.width.intValue;
+//    width = cell.bigImageView.image.size.width;
+//    height = cell.bigImageView.image.size.height;
+    width = [photo width].intValue;
     height = [photo height].intValue;
-    float factor = (float)width/320.0;
-    if (factor < 1) {
-    [cell.bigImageView setFrame:CGRectMake(0, 50, 320, height)];
-    cell.bigImageView.contentMode = UIViewContentModeScaleAspectFit;
+    float factor = (float)height/(float)width;
+    if (width < 320) {
+        cell.bigImageView.contentMode = UIViewContentModeScaleAspectFit;
+        [cell.bigImageView setFrame:CGRectMake(0, 50, 320,height)];
     }
     else
     {
-    a = (float)height/factor;
-    [cell.bigImageView setFrame:CGRectMake(0, 50, 320,a)];
     cell.bigImageView.contentMode = UIViewContentModeScaleAspectFit;
+    [cell.bigImageView setFrame:CGRectMake(0, 50, 320,320*factor)];
     }
     [cell bringSubviewToFront:cell.smallImageView];
     
 // assign attributes for cell
     
-    [cell initiallizFromdictAtIndex:photo andIndex:indexPath];
+    
     [cell.indicator startAnimating];
-    cell.smallImageView.contentMode = UIViewContentModeScaleAspectFit;
+    cell.smallImageView.contentMode = UIViewContentModeScaleAspectFill;
     return cell;
 }
 
@@ -169,12 +171,17 @@
     PDLPhotos *photo = [_photos objectAtIndex:i];
     int width = 0;
     int height = 0;
-    width = photo.width.intValue;
+//    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString
+//                                                                           :[photo bigPhoto]]]];
+//    width = image.size.width;
+//    height = image.size.height;
+    width = [photo width].intValue;
     height = [photo height].intValue;
-    float factor = (float)width/320.0;
-    if(factor<1)
-        return height;
-    return (float)((float)(height/factor)+55);
+    if (width < 320) {
+        return height+50;
+    }
+    float factor = (float)height/(float)width;
+    return (float)((float)(320.0*factor)+50);
 }
 
 - (IBAction)reloadData:(id)sender {
