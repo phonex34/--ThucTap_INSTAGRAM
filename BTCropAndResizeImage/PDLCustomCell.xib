@@ -51,7 +51,10 @@
                         <color key="color" red="0.054901964962482452" green="0.066666670143604279" blue="0.89019614458084106" alpha="1" colorSpace="deviceRGB"/>
                     </activityIndicatorView>
                 </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="avatarIndicator" destination="WHB-gQ-4M7" id="flZ-EP-qn4"/>
                 <outlet property="bigImageView" destination="eQg-jU-NWt" id="O39-7w-KYx"/>
