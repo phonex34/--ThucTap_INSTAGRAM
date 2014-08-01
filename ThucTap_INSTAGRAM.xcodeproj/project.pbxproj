@@ -45,7 +45,6 @@
 		66B927911980B7FA00BA0D5D /* UIImage+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 66B927901980B7FA00BA0D5D /* UIImage+Extra.m */; };
 		66DC7BFC1980A0560065AD27 /* PDLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 66DC7BF31980A0560065AD27 /* PDLAppDelegate.m */; };
 		66DC7C021980A1630065AD27 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66DC7C011980A1620065AD27 /* SDWebImage.framework */; };
-		66DC7C041980A2A70065AD27 /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 66DC7C031980A2A70065AD27 /* placeholder.png */; };
 		66DC7C061980AADF0065AD27 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66DC7C051980AADF0065AD27 /* ImageIO.framework */; };
 		66F1D9111980FC6E007A6A27 /* connectfb.png in Resources */ = {isa = PBXBuildFile; fileRef = 66F1D9101980FC6E007A6A27 /* connectfb.png */; };
 		66F1D9161981010D007A6A27 /* LTTTeam8.png in Resources */ = {isa = PBXBuildFile; fileRef = 66F1D9121981010D007A6A27 /* LTTTeam8.png */; };
@@ -132,7 +131,6 @@
 		66DC7BF21980A0560065AD27 /* PDLAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDLAppDelegate.h; sourceTree = "<group>"; };
 		66DC7BF31980A0560065AD27 /* PDLAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDLAppDelegate.m; sourceTree = "<group>"; };
 		66DC7C011980A1620065AD27 /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SDWebImage.framework; sourceTree = "<group>"; };
-		66DC7C031980A2A70065AD27 /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
 		66DC7C051980AADF0065AD27 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		66F1D9101980FC6E007A6A27 /* connectfb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = connectfb.png; sourceTree = "<group>"; };
 		66F1D9121981010D007A6A27 /* LTTTeam8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LTTTeam8.png; sourceTree = "<group>"; };
@@ -282,7 +280,6 @@
 		66AEADB31976D0B700BC34AA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				66DC7C031980A2A70065AD27 /* placeholder.png */,
 				66AEADEB1976D84F00BC34AA /* Images */,
 				66AEADB41976D0B700BC34AA /* ThucTap_INSTAGRAM-Info.plist */,
 				66AEADB51976D0B700BC34AA /* InfoPlist.strings */,
@@ -506,7 +503,6 @@
 				C0CC319019889BC800242850 /* PDLCustomCell.xib in Resources */,
 				66AEADB71976D0B700BC34AA /* InfoPlist.strings in Resources */,
 				66F29A93197E33AA006FA8C5 /* images3.jpeg in Resources */,
-				66DC7C041980A2A70065AD27 /* placeholder.png in Resources */,
 				66078CE5197DD7510010F575 /* e3.png in Resources */,
 				66F29A91197E33AA006FA8C5 /* images1.jpeg in Resources */,
 				66F1D9181981010D007A6A27 /* facebook.png in Resources */,

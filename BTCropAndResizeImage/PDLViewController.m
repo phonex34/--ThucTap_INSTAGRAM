@@ -70,8 +70,14 @@
         NSError *er = nil;
         NSMutableDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:_receivedData options:kNilOptions error:&er];
         NSDictionary *secondDict = [dataDictionary objectForKey:@"data"];
+        
+        // get token string from dictionary
+        
         _token= [secondDict objectForKey:@"auth_token"];
         NSString *postString = [NSString stringWithFormat:@"http://beta.pashadelic.com/api/v1/users/2765.json"];
+        
+        // start sent request 2 to get data
+        
         NSMutableURLRequest *_request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:postString] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
         [_request setHTTPMethod:@"GET"];
         [_request setValue:_token  forHTTPHeaderField:@"X-AUTH-TOKEN"];
@@ -80,6 +86,9 @@
     }
     if (connection == _conn2) {
         NSError *er = nil;
+        
+        // get data from json
+
         NSMutableDictionary *finalData = [NSJSONSerialization JSONObjectWithData:_receivedData options:kNilOptions error:&er];
         NSMutableDictionary *dataDict = [finalData objectForKey:@"data"];
         NSMutableDictionary *dataDict2 = [dataDict objectForKey:@"user"];
@@ -127,6 +136,7 @@
         cell = (PDLCustomCell *)[nib objectAtIndex:0];
     }
     PDLPhotos *photo = [_photos objectAtIndex:indexPath.row];
+    cell.smallImageView.layer.cornerRadius = 5;
     [cell initiallizFromdictAtIndex:photo andIndex:indexPath];
     int width = 0;
     int height = 0;
@@ -150,6 +160,7 @@
     
     
     [cell.indicator startAnimating];
+    [cell.avatarIndicator startAnimating];
     cell.smallImageView.contentMode = UIViewContentModeScaleAspectFill;
     return cell;
 }
