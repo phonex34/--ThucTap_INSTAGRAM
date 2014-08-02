@@ -20,6 +20,8 @@
     NSInteger chooseType;
 }
 @synthesize imageView,boundView;
+@synthesize lkBackImage;
+@synthesize lkTabBar;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -27,18 +29,20 @@
     //imageToCrop =[UIImage imageNamed:@"images1.jpeg"];
     //self.imageView.image = imageToCrop;
 	// Do any additional setup after loading the view, typically from a nib.
+    imageView.image = lkBackImage;
+   // [self setTabBarItem:lkTabBar.tabBarItem];
     
     ImagePicker = [[UIImagePickerController alloc]init];
     ImagePicker.delegate = self;
     @try{
-        NSLog(@"You choose Camera");
+       // NSLog(@"You choose Camera");
         ImagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
         chooseType = 1;
         [self presentViewController:ImagePicker animated:YES completion:NULL];
     }
     @catch(NSException *ex)
     {
-        NSString *string = [[NSString alloc]initWithFormat:@"Error %@ \nCó lẽ là không có thiết bị Camera đi kèm",ex];
+        NSString *string = [[NSString alloc]initWithFormat:@"Lỗi không kết nối được Camera. Kiểm tra lại thiết bị Camera nhé!"];
         UIAlertView *message = [[UIAlertView alloc]initWithTitle:@"Message" message:string delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [message show];
     }
@@ -72,20 +76,20 @@
             float bottomEdgePosition = CGRectGetMaxY(boundView.frame);
             
             //if the top edge coordinate is less than or equal to 53
-            if (topEdgePosition <= 0) {
+            if (topEdgePosition <= 44) {
                 
                 //draw drag view in max top position
                 
-                boundView.frame = CGRectMake(0, 0, 320, 320);
+                boundView.frame = CGRectMake(0, 44, 320, 320);
                 
             }
             
             //if bottom edge coordinate is greater than or equal to 480
             
-            if (bottomEdgePosition >=410) {
+            if (bottomEdgePosition >=434) {
                 
                 //draw drag view in max bottom position
-                boundView.frame = CGRectMake(0, 90, 320, 320);
+                boundView.frame = CGRectMake(0, 114, 320, 320);
             }
             
         }
@@ -174,13 +178,15 @@
 //truyen du lieu sang view crop image
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"filterView"]) {
+    if ([segue.identifier isEqualToString:@"FilterView"]) {
         NSLog(@"CroppedView was choose");
         testViewController *destViewController = segue.destinationViewController;
         destViewController.lkBoundView = self.boundView;
         destViewController.lkImageToCrop= self.imageView.image;
         destViewController.lkChooseType = chooseType;
+        destViewController.lkViewController = self;
     }
 }
+
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "ShareViewController.h"
+#import "testViewController.h"
 
 @interface ShareViewController ()
 
@@ -14,6 +15,7 @@
 
 @implementation ShareViewController
 @synthesize lkImage,imageView,textView;
+@synthesize lkBack, lkViewControllerFromFilter;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -28,10 +30,8 @@
     [super viewDidLoad];
     imageView.image = lkImage;
     textView.delegate = self;
-////    pickerView.delegate = self;
-////    pickerView.dataSource = self;
-//    shareTo = [NSArray arrayWithObjects:@"None",@"Facebook",@"Twitter",@"SinaWeibo", nil];
-//    // Do any additional setup after loading the view.
+    [textView setText:@""];
+    [textView setPlaceholder:@"Capption in here. Writte here to share with friends"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -39,18 +39,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 
 //set keboard and return button
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -63,47 +51,10 @@
     if (self.textView) {
         [self.textView resignFirstResponder];
     }
+
     return NO;
 }
 
-#pragma mark textField
-//set location for textField when keyBoard appear
-//-(void)textFieldDidBeginEditing:(UITextField *)textField
-//{
-//    [UIView beginAnimations:nil context:NULL];
-//    [UIView setAnimationDelegate:self];
-//    [UIView setAnimationDuration:0.2];
-//    [UIView setAnimationBeginsFromCurrentState:YES];
-//    self.view.frame =CGRectMake(self.view.frame.origin.x, (self.view.frame.origin.y-10), self.view.frame.size.width, self.view.frame.size.height);
-//    [UIView commitAnimations];
-//}
-//-(void)textFieldDidEndEditing:(UITextField *)textField
-//{
-//    [UIView beginAnimations:nil context:NULL];
-//    [UIView setAnimationDelegate:self];
-//    [UIView setAnimationDuration:0.2];
-//    [UIView setAnimationBeginsFromCurrentState:YES];
-//    self.view.frame =CGRectMake(self.view.frame.origin.x, (self.view.frame.origin.y+10), self.view.frame.size.width, self.view.frame.size.height);
-//    [UIView commitAnimations];
-//    
-//}
-////handle with picker view
-//-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
-//{
-//    return 1;
-//}
-//-(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-//{
-//    return [shareTo count];
-//}
-//-(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-//{
-//    return [shareTo objectAtIndex:row];
-//}
-//-(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
-//{
-//    [self shareToInternet:row];
-//}
 //share to select
 #pragma mark share
 -(void)shareToInternet:(NSInteger )serviceType
@@ -120,9 +71,9 @@
                 [composeViewController addImage:imageView.image];
                 //textview
                 [composeViewController setInitialText:textView.text];
-                //textField
                 
                 [self presentViewController:composeViewController animated:YES completion:NULL];
+
             }else
             {
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Account Found" message:string delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil, nil];
@@ -186,6 +137,7 @@
 
 }
 
+
 //action save image to camera roll
 - (IBAction)saveToCameraRollClicked:(id)sender {
     
@@ -234,6 +186,16 @@
 }
 - (IBAction)LTTTeam8Clicked:(id)sender {
     [self shareToInternet:4];
+}
+
+//author dvduongth
+//back to filter
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    testViewController *destination = segue.destinationViewController;
+    destination.lkBack = 10;
+    destination.lkImageShare = imageView.image;
+    destination.lkViewController = lkViewControllerFromFilter;
 }
 
 

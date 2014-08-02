@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @interface PDLViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,NSURLConnectionDataDelegate,NSURLConnectionDelegate>
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *onLoadIndicator;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property(nonatomic,assign) NSString *token;
-@property (nonatomic,strong)  NSURLConnection *connection;
-@property (nonatomic,strong)  NSURLConnection *connection1;
-@property (nonatomic, strong) NSMutableURLRequest *request1;
-@property (nonatomic, strong) NSMutableURLRequest *request;
-@property (nonatomic, retain) NSMutableData *receivedData;
+@property (nonatomic,strong) NSMutableData *receivedData;
+@property (nonatomic,strong) NSString *token;
+@property (nonatomic,strong) NSURLConnection *conn1;
+@property (nonatomic,strong) NSURLConnection *conn2;
+- (IBAction)reloadData:(id)sender;
+- (IBAction)DeleteCache:(id)sender;
 @end

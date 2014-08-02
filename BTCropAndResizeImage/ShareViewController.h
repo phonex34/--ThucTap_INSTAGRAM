@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <Social/Social.h>
+#import "SSTextView.h"
+#import "ViewController.h"
 
 @interface ShareViewController : UIViewController<UIActionSheetDelegate,UITextFieldDelegate,UITextViewDelegate>
 {
@@ -16,13 +18,10 @@
 
 
 @property(strong, nonatomic) IBOutlet UIImageView *imageView;
-@property (strong, nonatomic) IBOutlet UITextView *textView;
+@property (strong, nonatomic) IBOutlet SSTextView *textView;
 
 @property(strong, nonatomic) UIImage *lkImage;
-@property (weak, nonatomic) IBOutlet UIButton *btnSave;
-@property (weak, nonatomic) IBOutlet UIButton *btnFacebook;
-@property (weak, nonatomic) IBOutlet UIButton *btnTwitter;
-@property (weak, nonatomic) IBOutlet UIButton *btnSinaWeibo;
-@property (weak, nonatomic) IBOutlet UIButton *LTTTeam8;
+@property (strong, nonatomic) ViewController *lkViewControllerFromFilter;
+@property (nonatomic) NSInteger lkBack;
 
 @end

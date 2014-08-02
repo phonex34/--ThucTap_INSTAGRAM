@@ -10,30 +10,32 @@
 #import "PDLPhotos.h"
 #import "PDLCustomCell.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "PDLProcessConnection.h"
 @interface PDLViewController ()
+
 @property(strong,nonatomic) NSMutableArray *photos;
-
-
 @end
 
 @implementation PDLViewController
 @synthesize receivedData = _receivedData;
-@synthesize tableView =  _tableView;
 @synthesize token = _token;
-@synthesize connection = _connection;
-@synthesize connection1 = _connection1;
-@synthesize request;
-@synthesize request1;
 @synthesize photos = _photos;
-
+@synthesize conn1 = _conn1;
+@synthesize conn2 = _conn2;
+@synthesize tableView =  _tableView;
+@synthesize onLoadIndicator = _onLoadIndicator;
 - (void)viewDidLoad
 {
-    
+    [_onLoadIndicator startAnimating];
+    [self startConnection];
+    _photos = [[NSMutableArray alloc] init];
     _receivedData = [[NSMutableData alloc] init];
-    [self startSentRequest];
+    PDLProcessConnection *_processor = [[PDLProcessConnection alloc] init];
+    _photos = [_processor getDataFromObject:_processor];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [super viewDidLoad];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -42,24 +44,67 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Delegate Connection
 
-- (void) startSentRequest{
-    
-    request = [[NSMutableURLRequest alloc]init];
-    
+-(void) startConnection {
     NSString *postString = [NSString stringWithFormat:@"http://beta.pashadelic.com/api/v1/sessions.json?username=dinhluong92&password=dinhluong92"];
-    request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:postString] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
-    [request setHTTPMethod:@"POST"];
-    _connection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
-    [_connection start];
+    NSMutableURLRequest *_request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:postString] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
+    [_request setHTTPMethod:@"POST"];
+    _conn1 = [[NSURLConnection alloc] initWithRequest:_request delegate:self];
+    [_conn1 start];
 }
+
+- (void) connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response{
+    [_receivedData setLength:0.0];
+    
+}
+
+- (void) connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
+    [_receivedData appendData:data];
+    
+}
+
+-(void) connectionDidFinishLoading:(NSURLConnection *)connection{
+    
+    if (connection == _conn1) {
+        NSError *er = nil;
+        NSMutableDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:_receivedData options:kNilOptions error:&er];
+        NSDictionary *secondDict = [dataDictionary objectForKey:@"data"];
+        _token= [secondDict objectForKey:@"auth_token"];
+        NSString *postString = [NSString stringWithFormat:@"http://beta.pashadelic.com/api/v1/users/2765.json"];
+        NSMutableURLRequest *_request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:postString] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
+        [_request setHTTPMethod:@"GET"];
+        [_request setValue:_token  forHTTPHeaderField:@"X-AUTH-TOKEN"];
+        _conn2 = [[NSURLConnection alloc] initWithRequest:_request delegate:self];
+        [_conn2 start];
+    }
+    if (connection == _conn2) {
+        NSError *er = nil;
+        NSMutableDictionary *finalData = [NSJSONSerialization JSONObjectWithData:_receivedData options:kNilOptions error:&er];
+        NSMutableDictionary *dataDict = [finalData objectForKey:@"data"];
+        NSMutableDictionary *dataDict2 = [dataDict objectForKey:@"user"];
+        NSMutableArray *dataArray = [dataDict2 objectForKey:@"photos"];
+        _photos = [[NSMutableArray alloc] init];
+        for (int i = 0; i < dataArray.count; i++) {
+            NSMutableDictionary *dictTemp = [dataArray objectAtIndex:i];
+            PDLPhotos *newObject = [[PDLPhotos alloc] initFromDictionary: dictTemp];
+            [_photos addObject:newObject];
+        }
+        [_onLoadIndicator stopAnimating];
+        [_onLoadIndicator setHidden:YES];
+        [_tableView reloadData];
+    }
+    
+}
+
 
 #pragma mark - Delegate Table View
 
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    
     return _photos.count;
-//    return 1;
+
 }
 
 -(NSInteger) tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
@@ -67,172 +112,88 @@
     return 1;
 }
 
-- (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    static NSString *indentifier = @"myIndentifier";
-    PDLCustomCell *cell = (PDLCustomCell *)[tableView dequeueReusableCellWithIdentifier:@"myIndentifier"];
+
+
+- (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+// creating cell at possition : index
+    
+    static NSString *indentifier = @"myIndentifier";
+    PDLCustomCell *cell = (PDLCustomCell *)[tableView dequeueReusableCellWithIdentifier:indentifier];
     if(cell == nil)
     {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"PDLCustomCell" owner:self options:nil];
         cell = (PDLCustomCell *)[nib objectAtIndex:0];
     }
     PDLPhotos *photo = [_photos objectAtIndex:indexPath.row];
-    cell.labelUser.text = photo.username;
-    cell.labelTitle.text = photo.title;
-    cell.labelDate.text = photo.dateTaken;
-
-    [cell.smallImageView setImageWithURL:[NSURL URLWithString:[photo avatar]] placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
-    cell.smallImageView.contentMode = UIViewContentModeScaleAspectFit;
-    cell.bigImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://static.mp3.zdn.vn/skins/mp3_version3_05/images/singer_banner.jpg"]]];
-    [cell.bigImageView setImageWithURL:[NSURL URLWithString:[photo bigPhoto]] placeholderImage:[UIImage imageNamed:@"placeholder.png"] options:SDWebImageRefreshCached completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
-        if (!image) {
-            [cell.indicator startAnimating];
-        }
-        else{
-            [cell.indicator stopAnimating];
-            cell.indicator.hidden = YES;
-        }
-    }];
-
-    cell.smallImageView.layer.cornerRadius=2;
-    NSLog(@"getting data for cell : %d",indexPath.row);
-//     cell.smallImageView.layer.borderWidth=1.0;
+    [cell initiallizFromdictAtIndex:photo andIndex:indexPath];
+    int width = 0;
+    int height = 0;
+//    width = cell.bigImageView.image.size.width;
+//    height = cell.bigImageView.image.size.height;
+    width = [photo width].intValue;
+    height = [photo height].intValue;
+    float factor = (float)height/(float)width;
+    if (width < 320) {
+        cell.bigImageView.contentMode = UIViewContentModeScaleAspectFit;
+        [cell.bigImageView setFrame:CGRectMake(0, 50, 320,height)];
+    }
+    else
+    {
+    cell.bigImageView.contentMode = UIViewContentModeScaleAspectFill;
+    [cell.bigImageView setFrame:CGRectMake(0, 50, 320,320*factor)];
+    }
+    [cell bringSubviewToFront:cell.smallImageView];
+    
+// assign attributes for cell
+    
+    
+    [cell.indicator startAnimating];
+    cell.smallImageView.contentMode = UIViewContentModeScaleAspectFill;
     return cell;
 }
+
+// action for row selection
+
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"You are selected row %d",indexPath.row);
+    PDLCustomCell *cell = (PDLCustomCell *)[tableView cellForRowAtIndexPath:indexPath];
+    NSLog(@"witdh frame : %f height frame:%f width of image: %f height : %f",cell.bigImageView.frame.size.width,cell.bigImageView.frame.size.height,cell.bigImageView.image.size.width,cell.bigImageView.image.size.height);
+    
 }
+
+
+// get height for row in here
+
+
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-
-    return 320.0;
+    NSInteger i = indexPath.row;
+    PDLPhotos *photo = [_photos objectAtIndex:i];
+    int width = 0;
+    int height = 0;
+//    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString
+//                                                                           :[photo bigPhoto]]]];
+//    width = image.size.width;
+//    height = image.size.height;
+    width = [photo width].intValue;
+    height = [photo height].intValue;
+    if (width < 320) {
+        return height+50;
+    }
+    float factor = (float)height/(float)width;
+    return (float)((float)(320.0*factor)+50);
 }
 
-#pragma mark - NSURLConnection delegate
-
-- (void) connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
-    UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Error" message:@"can not connect to internet" delegate:self cancelButtonTitle:@"Got it !" otherButtonTitles:nil, nil];
-    [av show];
+- (IBAction)reloadData:(id)sender {
+ 
+    [self startConnection];
+    [_tableView reloadData];
 }
 
-- (void) connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response{
-    
-    if(connection == _connection)
-    {
-        [_receivedData setLength:0];
-        NSLog(@"received response of connection 1");
-    }
-    if(connection == _connection1)
-    {
-        [_receivedData setLength:0];
-        NSLog(@"received response of connection 2");
-    }
-    
+- (IBAction)DeleteCache:(id)sender {
+    SDImageCache *imageCache = [SDImageCache sharedImageCache];
+    [imageCache clearMemory];
+    [imageCache clearDisk];
+    [_tableView reloadData];
 }
-
--(void) connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
-    
-    if(connection == _connection)
-    {
-        [_receivedData appendData:data];
-        NSLog(@"receive data of connection 1");
-    }
-    if(connection == _connection1)
-    {
-        [_receivedData appendData:data];
-        NSLog(@"receive data of connection 2");
-    }
-}
-
-- (void) connectionDidFinishLoading:(NSURLConnection *)connection{
-    NSError *er = nil;
-    if(connection == _connection)
-    {
-        NSLog(@"received data of connection 1!");
-        NSMutableDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:_receivedData options:kNilOptions error:&er];
-        NSDictionary *secondDict = [dataDictionary objectForKey:@"data"];
-        _token= [secondDict objectForKey:@"auth_token"];
-        NSString *postString = [NSString stringWithFormat:@"http://beta.pashadelic.com/api/v1/countries/1233/photos.json"];
-        request1 = [[NSMutableURLRequest alloc]init];
-        request1 = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:postString] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
-        [request1 setHTTPMethod:@"GET"];
-        [request1 setValue:_token forHTTPHeaderField:@"X-AUTH-TOKEN"];
-        _connection1 = [NSURLConnection connectionWithRequest:request1 delegate:self];
-        [_connection1 start];
-    }
-    if(connection == _connection1)
-    {
-        NSLog(@"received data of connection 2");
-        NSMutableDictionary *finalData = [NSJSONSerialization JSONObjectWithData:_receivedData options:kNilOptions error:&er];
-        NSMutableDictionary *dataDict = [finalData objectForKey:@"data"];
-        NSMutableArray *dataArray = [dataDict objectForKey:@"photos"];
-        _photos = [[NSMutableArray alloc] init];
-        for (int i = 0; i < dataArray.count; i++) {
-            NSMutableDictionary *dictTemp = [dataArray objectAtIndex:i];
-            PDLPhotos *newObject = [[PDLPhotos alloc] initFromDictionary: dictTemp];
-            [_photos addObject:newObject];
-        }
-        [self.tableView reloadData];
-    }
-}
-
-//tao Thread with NSOperation
-//- (void) usingNSOperationQueueToLoadImage:(NSArray*) imageURLs
-//{
-//    NSOperationQueue *operationQueue = [NSOperationQueue new];
-//    [operationQueue setMaxConcurrentOperationCount:20];
-//    for( id imageURL in imageURLs)
-//    {
-//        NSInvocationOperation *operation = [[NSInvocationOperation alloc] initWithTarget:self
-//                                                                                selector:@selector(processLoadingImageInNewThread:)
-//                                                                                  object:imageURL];
-//       
-//        [operationQueue addOperation:operation];
-//        //[operation release];
-//    }
-//}
-
-#pragma mark -TaoThread
-//// 1. Tao thread moi de load image
-//- (void) createThreadToLoadImage
-//{
-//    NSString *imageURL = @&quot;http://www.abc.com/example.png&quot;;
-//    NSThread* myThread = [[NSThread alloc] initWithTarget:self
-//                                                 selector:@selector(processLoadingImageInNewThread:)
-//                                                   object:imageURL];
-//    [myThread start];
-//}
-//
-// 2. Ham xu ly load image
-//- (void) processLoadingImageInNewThread:(NSString*) imageURL
-//{
-//    NSURL *url = [NSURL urlWithString:imageURL];
-//    NSData *imageData = [ [NSData alloc] initWithContentsOfURL: url ];
-//    [self performSelectorOnMainThread:@selector(imageDownloadDidFinish:) withObject:imageData waitUntilDone:NO];
-//}
-
-//// 3. Ham xu ly hien thi image da duoc load xong
-//- (void) imageDownloadDidFinish:(NSData*) imageData
-//{
-//    UIImage *downloadedImage = [UIImage imageWithData:imageData];
-//    // Hien thi image len image view
-//    self.imageView.image = downloadedImage;
-//}
-//
-//// 1A. Tao thread moi de load image
-//- (void) createThreadToLoadImage:(NSArray*) imageURLs
-//{
-//    for( id imageURL in imageURLs)
-//    {
-//        NSThread* myThread = [[NSThread alloc] initWithTarget:self
-//                                                     selector:@selector(processLoadingImageInNewThread:)
-//                                                       object:imageURL];
-//        [myThread start];
-//    }
-//}
-
 @end
-
-
-
-
-
-
