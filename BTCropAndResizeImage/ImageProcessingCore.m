@@ -9,8 +9,8 @@
 #import "ImageProcessingCore.h"
 #import "UIImage+FiltrrCompositions.h"
 #import "GPUImage.h"
+#import "testViewController.h"
 @implementation ImageProcessingCore
-
 
 NSMutableDictionary *allEditFilter;
 //CIFilter *lighten,*sharpen,*contrast;
@@ -211,58 +211,58 @@ int countInit=0;
 -(UIImage *)effectImageProcessing:(UIImage *)imageViewController editTag:(int ) tag{
     switch (tag) {
             
-        case 2:
+        case 3:
             imageViewController=[imageViewController e1];
             
             [allEditFilter setObject:[NSNumber numberWithInt:1] forKey:@"Effect"];
             break;
-        case 3:
+        case 4:
             imageViewController=[imageViewController  e2];
             
             [allEditFilter setObject: [NSNumber numberWithInt:2] forKey:@"Effect"];
             break;
-        case 4:
+        case 5:
             [allEditFilter setObject: [NSNumber numberWithInt:3] forKey:@"Effect"];
             imageViewController=[imageViewController e3];
             
             
             break;
-        case 5:
+        case 6:
             [allEditFilter setObject: [NSNumber numberWithInt:4] forKey:@"Effect"];
             imageViewController=[imageViewController e4];
             
             break;
-        case 6:
+        case 7:
             [allEditFilter setObject: [NSNumber numberWithInt:5] forKey:@"Effect"];
             imageViewController=[imageViewController  e5];
             
             break;
-        case 7:
+        case 8:
             [allEditFilter setObject: [NSNumber numberWithInt:6] forKey:@"Effect"];
             imageViewController=[imageViewController  e6];
             
             break;
-        case 8:
+        case 9:
             [allEditFilter setObject: [NSNumber numberWithInt:7] forKey:@"Effect"];
             imageViewController=[imageViewController  e7];
             //            imageView.image=imageViewController;
             break;
-        case 9:
+        case 10:
             [allEditFilter setObject: [NSNumber numberWithInt:8] forKey:@"Effect"];
             imageViewController=[imageViewController  e8];
             //            imageView.image=imageViewController;
             break;
-        case 10:
+        case 11:
             [allEditFilter setObject: [NSNumber numberWithInt:9] forKey:@"Effect"];
             imageViewController=[imageViewController  e9];
             //            imageView.image=imageViewController;
             break;
-        case 11:
+        case 12:
             [allEditFilter setObject: [NSNumber numberWithInt:10] forKey:@"Effect"];
             imageViewController=[imageViewController e10];
             //            imageView.image=imageViewController;
             break;
-        case 12:
+        case 13:
             [allEditFilter setObject: [NSNumber numberWithInt:11] forKey:@"Effect"];
             imageViewController=[imageViewController e11];
             //            imageView.image=imageViewController;

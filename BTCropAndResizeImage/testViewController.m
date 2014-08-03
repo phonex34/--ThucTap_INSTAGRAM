@@ -80,8 +80,8 @@ ImageProcessingCore *imageEditProcessing ;
     
     
     //create a effect scrollview
-    imageFilterScroll = [NSArray arrayWithObjects:@"e1.png",@"e2.png",@"e3.png",@"e4.png",@"e5.png",@"e6.png",@"e7.png",@"e8.png",@"e9.png",@"e10.png",@"e11.png", nil];
-    titleFilterScroll =[NSArray arrayWithObjects:@"Effect 1",@"Effect 2",@"Effect 3",@"Effect 4",@"Effect 5",@"Effect 6",@"Effect 7",@"Effect 8",@"Effect 9",@"Effect 10",@"Effect 11", nil];
+    imageFilterScroll = [NSArray arrayWithObjects:@"original.jpg",@"e1.png",@"e2.png",@"e3.png",@"e4.png",@"e5.png",@"e6.png",@"e7.png",@"e8.png",@"e9.png",@"e10.png",@"e11.png", nil];
+    titleFilterScroll =[NSArray arrayWithObjects:@"Original",@"Effect 1",@"Effect 2",@"Effect 3",@"Effect 4",@"Effect 5",@"Effect 6",@"Effect 7",@"Effect 8",@"Effect 9",@"Effect 10",@"Effect 11", nil];
     
     int leftMargin = 0;
     for (int i = 0; i < [imageFilterScroll count]; i++)
@@ -125,7 +125,7 @@ ImageProcessingCore *imageEditProcessing ;
     {
         
         btnSingleEdit= [UIButton buttonWithType:UIButtonTypeCustom];
-        btnSingleEdit.frame=CGRectMake(leftMargin+20, 20, SCREEN_WIDTH-80, SCREEN_HEIGHT-32);
+        btnSingleEdit.frame=CGRectMake(leftMargin+20, 10, SCREEN_WIDTH-80, SCREEN_HEIGHT-32);
         
         NSString *cacheImage = [NSString stringWithFormat:@"%@",[imageEditScroll objectAtIndex:i]];
         
@@ -212,6 +212,13 @@ ImageProcessingCore *imageEditProcessing ;
         
         tempEffectImage=imgViewAfterEditImage;
     }
+    
+    if(caseEffectButton==2){
+    
+        imageView.image=beginUIImage;
+    }
+    
+    else{
     UIActivityIndicatorView *activityIndicator=[[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 320,280)];
     [activityIndicator setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleWhiteLarge];
     //    activityIndicator.center=[self tableView].center;
@@ -235,7 +242,7 @@ ImageProcessingCore *imageEditProcessing ;
                });
         //imgViewAfterEffectImage=[imageEditProcessing effectImageProcessing:tempEffectImage2 editTag:caseEffectButton];
     });
-    
+    }
 }
 
 -(void) editFilterSelected:(id)sender{

@@ -10,6 +10,9 @@
 #import <Social/Social.h>
 #import "ViewController.h"
 @interface testViewController : UIViewController<UINavigationBarDelegate,UITextFieldDelegate,UIActionSheetDelegate,UIAlertViewDelegate>
+
+  
+
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UISlider *imageSlider;
 @property (weak, nonatomic) IBOutlet UIScrollView *effectScrollView;
