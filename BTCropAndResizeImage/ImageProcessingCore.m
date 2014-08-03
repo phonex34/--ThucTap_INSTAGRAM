@@ -8,80 +8,201 @@
 
 #import "ImageProcessingCore.h"
 #import "UIImage+FiltrrCompositions.h"
+#import "GPUImage.h"
 @implementation ImageProcessingCore
 
 
-
 NSMutableDictionary *allEditFilter;
-CIFilter *lighten,*sharpen,*contrast;
+//CIFilter *lighten,*sharpen,*contrast;
 UIImageOrientation orientation; // New!
-
-
-
+GPUImageBrightnessFilter *lighten;
+GPUImageContrastFilter *contrast;
+GPUImageSharpenFilter *sharpen;
+GPUImageExposureFilter *exposure;
+GPUImageSaturationFilter *saturation;
+GPUImageVignetteFilter *vignette;
+NSArray *editFilterName ;NSArray *filterValue;
+int countInit=0;
+-(void) initVarialbe
+{
+    editFilterName = @[@"Brightness", @"Sharpeness",
+                       @"Contrast",@"Exposure",@"Saturation",@"Vignette",@"Effect"];
+    filterValue = @[[NSNumber numberWithFloat:0.0],
+                    [NSNumber numberWithFloat:0.0],
+                    [NSNumber numberWithFloat:1.0],
+                    [NSNumber numberWithFloat:0.0],
+                    [NSNumber numberWithFloat:1.0],
+                    [NSNumber numberWithFloat:-0.5],
+                    [NSNumber numberWithInt:0]];
+    allEditFilter = [NSMutableDictionary dictionaryWithObjects:filterValue forKeys:editFilterName];
+    
+}
 
 -(UIImage *)editImageProcessing:(UIImage *)imageViewController withAmount:(float)intensity editTag:(int ) tag{
-    NSArray *editFilterName = @[@"Brightness", @"Sharpenss",
-                                @"Contrast",@"Effect"];
-    NSArray *filterValue = @[[NSNumber numberWithFloat:0.0],
-                             [NSNumber numberWithFloat:0.0],
-                             [NSNumber numberWithFloat:1.0],
-                             [NSNumber numberWithInt:0]];
-    allEditFilter = [NSMutableDictionary dictionaryWithObjects:filterValue forKeys:editFilterName];
-
-    CIContext *context;
-    context = [CIContext contextWithOptions:nil];
-    CIImage *imageCIEditProcessing,*outputCIImage;
-    lighten = [CIFilter filterWithName:@"CIColorControls"];
-    sharpen =  [CIFilter filterWithName:@"CISharpenLuminance"];
-    contrast = [CIFilter filterWithName:@"CIColorControls"];
+    
+    if (countInit==0) {
+        [self initVarialbe];
+    }
+    countInit=1;
+    GPUImagePicture *inputPicture = [[GPUImagePicture alloc] initWithImage:imageViewController smoothlyScaleOutput:NO];
+    
+    
+    lighten = [[GPUImageBrightnessFilter alloc] init];
+    contrast = [[GPUImageContrastFilter alloc] init];
+    sharpen = [[GPUImageSharpenFilter alloc] init];
+    exposure=[[GPUImageExposureFilter alloc] init];
+    saturation = [[GPUImageSaturationFilter alloc ] init];
+    vignette =[[GPUImageVignetteFilter alloc ]init];
+    //   UIColor *color=
+    //    vignette.vignetteColor=[UIColor whiteColor];
     UIImage *outputUIImage;
-    imageCIEditProcessing = [CIImage imageWithCGImage:imageViewController.CGImage];
+    //    imageCIEditProcessing = [CIImage imageWithCGImage:imageViewController.CGImage];
     switch (tag) {
         case 2:
             [allEditFilter setObject: [NSNumber numberWithFloat:intensity] forKey:@"Brightness"];
             NSLog(@"%@",allEditFilter);
-            [lighten setValue:imageCIEditProcessing forKey:kCIInputImageKey];
-            [lighten setValue:[allEditFilter objectForKey:@"Brightness"] forKey:@"inputBrightness"];
-            [sharpen setValue:lighten.outputImage forKey:kCIInputImageKey];
-            [sharpen setValue:[allEditFilter objectForKey:@"Sharpenss"] forKey:@"inputSharpness"];
-            [contrast setValue:sharpen.outputImage forKey:kCIInputImageKey];
-            [contrast setValue:[allEditFilter objectForKey:@"Contrast"] forKey:@"inputContrast"];
+            
+            NSLog(@"gia tri float bright %f",[[allEditFilter objectForKey:@"Brightness"] floatValue ]);
+            lighten.brightness=[[allEditFilter objectForKey:@"Brightness"] floatValue];
+            sharpen.sharpness=[[allEditFilter objectForKey:@"Sharpeness"] floatValue];
+            contrast.contrast=[[allEditFilter objectForKey:@"Contrast"] floatValue];
+            exposure.exposure=[[allEditFilter objectForKey:@"Exposure"] floatValue];
+            saturation.saturation=[[allEditFilter objectForKey:@"Saturation"] floatValue];
+            vignette.vignetteEnd=[[allEditFilter objectForKey:@"Vignette"] floatValue];
+            
+            
+            [inputPicture addTarget:lighten];
+            [lighten addTarget:sharpen];
+            [sharpen addTarget:exposure];
+            [exposure addTarget:saturation];
+            [saturation addTarget:vignette];
+            [vignette addTarget:contrast];
+            [inputPicture processImage];
+            [contrast useNextFrameForImageCapture];
+            
             break;
         case 3:
-            [allEditFilter setObject: [NSNumber numberWithFloat:intensity] forKey:@"Sharpenss"];
+            [allEditFilter setObject: [NSNumber numberWithFloat:intensity] forKey:@"Sharpeness"];
             NSLog(@"%@",allEditFilter);
-            [lighten setValue:imageCIEditProcessing forKey:kCIInputImageKey];
-            [lighten setValue:[allEditFilter objectForKey:@"Brightness"] forKey:@"inputBrightness"];
-            [sharpen setValue:lighten.outputImage forKey:kCIInputImageKey];
-            [sharpen setValue:[allEditFilter objectForKey:@"Sharpenss"] forKey:@"inputSharpness"];
-            [contrast setValue:sharpen.outputImage forKey:kCIInputImageKey];
-            [contrast setValue:[allEditFilter objectForKey:@"Contrast"] forKey:@"inputContrast"];
+            lighten.brightness=[[allEditFilter objectForKey:@"Brightness"] floatValue];
+            sharpen.sharpness=[[allEditFilter objectForKey:@"Sharpeness"] floatValue];
+            contrast.contrast=[[allEditFilter objectForKey:@"Contrast"] floatValue];
+            exposure.exposure=[[allEditFilter objectForKey:@"Exposure"] floatValue];
+            saturation.saturation=[[allEditFilter objectForKey:@"Saturation"] floatValue];
+            vignette.vignetteEnd=[[allEditFilter objectForKey:@"Vignette"] floatValue];
+            
+            
+            [inputPicture addTarget:lighten];
+            [lighten addTarget:sharpen];
+            [sharpen addTarget:exposure];
+            [exposure addTarget:saturation];
+            [saturation addTarget:vignette];
+            [vignette addTarget:contrast];
+            [inputPicture processImage];
+            [contrast useNextFrameForImageCapture];
+            
+            
             break;
         case 4:
             [allEditFilter setObject: [NSNumber numberWithFloat:intensity] forKey:@"Contrast"];
             NSLog(@"%@",allEditFilter);
-            [lighten setValue:imageCIEditProcessing forKey:kCIInputImageKey];
-            [lighten setValue:[allEditFilter objectForKey:@"Brightness"] forKey:@"inputBrightness"];
-            [sharpen setValue:lighten.outputImage forKey:kCIInputImageKey];
-            [sharpen setValue:[allEditFilter objectForKey:@"Sharpenss"] forKey:@"inputSharpness"];
-            [contrast setValue:sharpen.outputImage forKey:kCIInputImageKey];
-            [contrast setValue:[allEditFilter objectForKey:@"Contrast"] forKey:@"inputContrast"];
+            lighten.brightness=[[allEditFilter objectForKey:@"Brightness"] floatValue];
+            sharpen.sharpness=[[allEditFilter objectForKey:@"Sharpeness"] floatValue];
+            contrast.contrast=[[allEditFilter objectForKey:@"Contrast"] floatValue];
+            exposure.exposure=[[allEditFilter objectForKey:@"Exposure"] floatValue];
+            saturation.saturation=[[allEditFilter objectForKey:@"Saturation"] floatValue];
+            vignette.vignetteEnd=[[allEditFilter objectForKey:@"Vignette"] floatValue];
+            
+            
+            [inputPicture addTarget:lighten];
+            [lighten addTarget:sharpen];
+            [sharpen addTarget:exposure];
+            [exposure addTarget:saturation];
+            [saturation addTarget:vignette];
+            [vignette addTarget:contrast];
+            [inputPicture processImage];
+            [contrast useNextFrameForImageCapture];
+            
+            
+            break;
+            
+        case 5:
+            [allEditFilter setObject: [NSNumber numberWithFloat:intensity] forKey:@"Exposure"];
+            NSLog(@"%@",allEditFilter);
+            lighten.brightness=[[allEditFilter objectForKey:@"Brightness"] floatValue];
+            sharpen.sharpness=[[allEditFilter objectForKey:@"Sharpeness"] floatValue];
+            contrast.contrast=[[allEditFilter objectForKey:@"Contrast"] floatValue];
+            exposure.exposure=[[allEditFilter objectForKey:@"Exposure"] floatValue];
+            saturation.saturation=[[allEditFilter objectForKey:@"Saturation"] floatValue];
+            vignette.vignetteEnd=[[allEditFilter objectForKey:@"Vignette"] floatValue];
+            
+            
+            [inputPicture addTarget:lighten];
+            [lighten addTarget:sharpen];
+            [sharpen addTarget:exposure];
+            [exposure addTarget:saturation];
+            [saturation addTarget:vignette];
+            [vignette addTarget:contrast];
+            [inputPicture processImage];
+            [contrast useNextFrameForImageCapture];
+            
+            
+            break;
+        case 6:
+            
+            [allEditFilter setObject: [NSNumber numberWithFloat:intensity] forKey:@"Saturation"];
+            NSLog(@"%@",allEditFilter);
+            lighten.brightness=[[allEditFilter objectForKey:@"Brightness"] floatValue];
+            sharpen.sharpness=[[allEditFilter objectForKey:@"Sharpeness"] floatValue];
+            contrast.contrast=[[allEditFilter objectForKey:@"Contrast"] floatValue];
+            exposure.exposure=[[allEditFilter objectForKey:@"Exposure"] floatValue];
+            saturation.saturation=[[allEditFilter objectForKey:@"Saturation"] floatValue];
+            vignette.vignetteEnd=[[allEditFilter objectForKey:@"Vignette"] floatValue];
+            
+            
+            [inputPicture addTarget:lighten];
+            [lighten addTarget:sharpen];
+            [sharpen addTarget:exposure];
+            [exposure addTarget:saturation];
+            [saturation addTarget:vignette];
+            [vignette addTarget:contrast];
+            [inputPicture processImage];
+            [contrast useNextFrameForImageCapture];
+            
+            break;
+            
+            
+        case 7:
+            
+            [allEditFilter setObject: [NSNumber numberWithFloat:intensity] forKey:@"Vignette"];
+            NSLog(@"%@",allEditFilter);
+            lighten.brightness=[[allEditFilter objectForKey:@"Brightness"] floatValue];
+            sharpen.sharpness=[[allEditFilter objectForKey:@"Sharpeness"] floatValue];
+            contrast.contrast=[[allEditFilter objectForKey:@"Contrast"] floatValue];
+            exposure.exposure=[[allEditFilter objectForKey:@"Exposure"] floatValue];
+            saturation.saturation=[[allEditFilter objectForKey:@"Saturation"] floatValue];
+            vignette.vignetteEnd=[[allEditFilter objectForKey:@"Vignette"] floatValue];
+            
+            
+            [inputPicture addTarget:lighten];
+            [lighten addTarget:sharpen];
+            [sharpen addTarget:exposure];
+            [exposure addTarget:saturation];
+            [saturation addTarget:vignette];
+            [vignette addTarget:contrast];
+            [inputPicture processImage];
+            [contrast useNextFrameForImageCapture];
+            
             
             break;
         default:
             break;
     }
-
     
-    outputCIImage=contrast.outputImage;
     
-    CGImageRef cgimg = [context createCGImage:outputCIImage
-                                     fromRect:[outputCIImage extent]];
     
-    outputUIImage = [UIImage imageWithCGImage:cgimg scale:1.0 orientation:orientation];
     
-    CGImageRelease(cgimg);
-    
+    outputUIImage = [contrast imageFromCurrentFramebufferWithOrientation:UIImageOrientationUp];
     
     return outputUIImage;
 }
@@ -92,34 +213,34 @@ UIImageOrientation orientation; // New!
             
         case 2:
             imageViewController=[imageViewController e1];
-          
+            
             [allEditFilter setObject:[NSNumber numberWithInt:1] forKey:@"Effect"];
             break;
         case 3:
             imageViewController=[imageViewController  e2];
-       
+            
             [allEditFilter setObject: [NSNumber numberWithInt:2] forKey:@"Effect"];
             break;
         case 4:
             [allEditFilter setObject: [NSNumber numberWithInt:3] forKey:@"Effect"];
             imageViewController=[imageViewController e3];
-
-  
+            
+            
             break;
         case 5:
             [allEditFilter setObject: [NSNumber numberWithInt:4] forKey:@"Effect"];
             imageViewController=[imageViewController e4];
-     
+            
             break;
         case 6:
             [allEditFilter setObject: [NSNumber numberWithInt:5] forKey:@"Effect"];
             imageViewController=[imageViewController  e5];
-       
+            
             break;
         case 7:
             [allEditFilter setObject: [NSNumber numberWithInt:6] forKey:@"Effect"];
             imageViewController=[imageViewController  e6];
-     
+            
             break;
         case 8:
             [allEditFilter setObject: [NSNumber numberWithInt:7] forKey:@"Effect"];
@@ -152,6 +273,6 @@ UIImageOrientation orientation; // New!
             
     }
     return imageViewController;
-
+    
 }
 @end
