@@ -8,13 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController<UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIAlertViewDelegate,UIActionSheetDelegate>
+@interface ViewController : UIViewController<UIImagePickerControllerDelegate,UINavigationControllerDelegate,UINavigationBarDelegate,UIAlertViewDelegate,UIActionSheetDelegate>
 {
     UIImagePickerController *ImagePicker;
 }
 
 @property (strong,nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UIView *boundView;
+@property (strong, nonatomic) UIImage *lkBackImage;
+@property (strong, nonatomic) UITabBarController *lkTabBar;
 
 -(IBAction)handlePan:(UIPanGestureRecognizer *)recognizer;
 
