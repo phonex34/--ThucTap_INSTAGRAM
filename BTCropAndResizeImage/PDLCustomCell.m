@@ -20,13 +20,16 @@
 - (void)awakeFromNib
 {
     [bigImageView addSubview:indicator];
+    [smallImageView addSubview:_avatarIndicator];
+
     [self addSubview:smallImageView];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
-
+    // this comment for test
+    
     
 }
 
@@ -46,10 +49,10 @@
         
         [indicator stopAnimating];
         indicator.hidden = YES;
-        progressBar.hidden = YES;
+
     }
      ];
-    
+
 }
 
 @end
