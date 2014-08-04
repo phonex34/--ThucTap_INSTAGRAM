@@ -23,12 +23,15 @@
     [bigImageView addSubview:indicator];
     [smallImageView addSubview:avatarIndicator];
     [self addSubview:smallImageView];
+    [smallImageView addSubview:avatarIndicator];
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
-
+    // this comment for test
+    
     
 }
 
@@ -37,13 +40,12 @@
     labelUser.text = [object username];
     labelTitle.text = [object title];
     labelDate.text = object.dateTaken;
+    smallImageView.layer.cornerRadius = 5;
+    smallImageView.layer.masksToBounds = YES;
     [smallImageView setImageWithURL:[NSURL URLWithString:[object avatar]] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
-        if (image) {
-            [avatarIndicator stopAnimating];
-            [avatarIndicator setHidden:YES];
-        }
+        [avatarIndicator stopAnimating];
+        [avatarIndicator setHidden:YES];
     }];
-
     [bigImageView setImageWithURL:[NSURL URLWithString:[object bigPhoto]] placeholderImage:[UIImage imageNamed:@""] options:0 progress:^(NSUInteger receivedSize, long long expectedSize) {
         
         float number = (float)receivedSize/(float)expectedSize;
@@ -51,7 +53,6 @@
         [indicator startAnimating];
         
     } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
-        
         [indicator stopAnimating];
         indicator.hidden = YES;
         progressBar.hidden = YES;
