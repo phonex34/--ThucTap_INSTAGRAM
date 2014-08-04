@@ -314,7 +314,7 @@ UIButton *btnSingleEdit;
     
     NSInteger imageToCropDataSize = imageData.length;
     
-    NSLog(@"original size %d Bytes", imageToCropDataSize);
+    NSLog(@"original size %ld Bytes", (long)imageToCropDataSize);
     NSLog(@"Resault crop size %d Bytes", CroppedImageData.length);
     
     return croppedImage;
