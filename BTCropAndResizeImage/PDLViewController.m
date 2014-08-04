@@ -149,11 +149,10 @@
         [self loadMore];
     }
     PDLPhotos *photo = [_temPhotos objectAtIndex:indexPath.row];
+    [cell.avatarIndicator startAnimating];
     [cell initiallizFromdictAtIndex:photo andIndex:indexPath];
     int width = 0;
     int height = 0;
-//    width = cell.bigImageView.image.size.width;
-//    height = cell.bigImageView.image.size.height;
     width = [photo width].intValue;
     height = [photo height].intValue;
     float factor = (float)height/(float)width;
