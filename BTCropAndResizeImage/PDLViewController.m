@@ -174,15 +174,6 @@
     return cell;
 }
 
-// action for row selection
-
--(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    PDLCustomCell *cell = (PDLCustomCell *)[tableView cellForRowAtIndexPath:indexPath];
-    NSLog(@"witdh frame : %f height frame:%f width of image: %f height : %f",cell.bigImageView.frame.size.width,cell.bigImageView.frame.size.height,cell.bigImageView.image.size.width,cell.bigImageView.image.size.height);
-    
-}
-
-
 // get height for row in here
 
 
