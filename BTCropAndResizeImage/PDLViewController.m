@@ -75,7 +75,6 @@
         NSError *er = nil;
         NSMutableDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:_receivedData options:kNilOptions error:&er];
         NSDictionary *secondDict = [dataDictionary objectForKey:@"data"];
-<<<<<<< HEAD
         
         // get token string from dictionary
         
@@ -83,11 +82,8 @@
         NSString *postString = [NSString stringWithFormat:@"http://beta.pashadelic.com/api/v1/users/2765.json"];
         
         // start sent request 2 to get data
-        
-=======
-        _token= [secondDict objectForKey:@"auth_token"];
-        NSString *postString = [NSString stringWithFormat:@"http://beta.pashadelic.com/api/v1/users/2765.json"];
->>>>>>> master
+
+
         NSMutableURLRequest *_request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:postString] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
         [_request setHTTPMethod:@"GET"];
         [_request setValue:_token  forHTTPHeaderField:@"X-AUTH-TOKEN"];
@@ -96,12 +92,8 @@
     }
     if (connection == _conn2) {
         NSError *er = nil;
-<<<<<<< HEAD
-        
         // get data from json
 
-=======
->>>>>>> master
         NSMutableDictionary *finalData = [NSJSONSerialization JSONObjectWithData:_receivedData options:kNilOptions error:&er];
         NSMutableDictionary *dataDict = [finalData objectForKey:@"data"];
         NSMutableDictionary *dataDict2 = [dataDict objectForKey:@"user"];

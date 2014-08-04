@@ -21,10 +21,8 @@
 - (void)awakeFromNib
 {
     [bigImageView addSubview:indicator];
-<<<<<<< HEAD
     [smallImageView addSubview:avatarIndicator];
-=======
->>>>>>> master
+
     [self addSubview:smallImageView];
     [smallImageView addSubview:avatarIndicator];
     
@@ -58,21 +56,10 @@
     } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
         [indicator stopAnimating];
         indicator.hidden = YES;
-        progressBar.hidden = YES;
-<<<<<<< HEAD
 
     }
      ];
-//    [bigImageView setImageWithURL:[NSURL URLWithString:[object bigPhoto]] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
-//        [indicator stopAnimating];
-//        indicator.hidden = YES;
-//        progressBar.hidden = YES;
-//    }];
-=======
-    }
-     ];
-    
->>>>>>> master
+
 }
 
 @end
