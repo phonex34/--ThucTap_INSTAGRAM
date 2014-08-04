@@ -56,7 +56,7 @@
     } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
         [indicator stopAnimating];
         indicator.hidden = YES;
-
+        progressBar.hidden = YES;
     }
      ];
 
