@@ -45,8 +45,18 @@
                         <rect key="frame" x="47" y="91" width="227" height="2"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </progressView>
+                    <activityIndicatorView opaque="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" id="WHB-gQ-4M7">
+                        <rect key="frame" x="20" y="26" width="20" height="20"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="color" red="0.054901964962482452" green="0.066666670143604279" blue="0.89019614458084106" alpha="1" colorSpace="deviceRGB"/>
+
+                    </activityIndicatorView>
+
                 </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="bigImageView" destination="eQg-jU-NWt" id="O39-7w-KYx"/>
                 <outlet property="indicator" destination="6j5-eI-GlX" id="n50-KZ-WmJ"/>

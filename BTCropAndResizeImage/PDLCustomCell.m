@@ -20,13 +20,15 @@
 - (void)awakeFromNib
 {
     [bigImageView addSubview:indicator];
+    [smallImageView addSubview:_avatarIndicator];
     [self addSubview:smallImageView];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
-
+    // this comment for test
+    
     
 }
 
@@ -35,8 +37,12 @@
     labelUser.text = [object username];
     labelTitle.text = [object title];
     labelDate.text = object.dateTaken;
-    [smallImageView setImageWithURL:[NSURL URLWithString:[object avatar]] placeholderImage:[UIImage imageNamed: @"placeholder.png"]];
-    [bigImageView setImageWithURL:[NSURL URLWithString:[object bigPhoto]] placeholderImage:[UIImage imageNamed:@"placeholder.png"] options:0 progress:^(NSUInteger receivedSize, long long expectedSize) {
+    [smallImageView setImageWithURL:[NSURL URLWithString:[object avatar]] placeholderImage:[UIImage imageNamed: @""] options:kNilOptions completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+        [_avatarIndicator stopAnimating];
+    }];
+    smallImageView.layer.cornerRadius = 4.0;
+    smallImageView.layer.masksToBounds = YES;
+    [bigImageView setImageWithURL:[NSURL URLWithString:[object bigPhoto]] placeholderImage:[UIImage imageNamed:@""] options:0 progress:^(NSUInteger receivedSize, long long expectedSize) {
         
         float number = (float)receivedSize/(float)expectedSize;
         progressBar.progress = number;
@@ -47,9 +53,10 @@
         [indicator stopAnimating];
         indicator.hidden = YES;
         progressBar.hidden = YES;
+        
     }
      ];
-    
+
 }
 
 @end

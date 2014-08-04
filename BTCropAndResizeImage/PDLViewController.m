@@ -14,6 +14,8 @@
 @interface PDLViewController ()
 
 @property(strong,nonatomic) NSMutableArray *photos;
+@property(strong,nonatomic) NSMutableArray *temPhotos;
+@property(nonatomic) int indexFlag;
 @end
 
 @implementation PDLViewController
@@ -24,12 +26,15 @@
 @synthesize conn2 = _conn2;
 @synthesize tableView =  _tableView;
 @synthesize onLoadIndicator = _onLoadIndicator;
+@synthesize indexFlag = _indexFlag;
+@synthesize temPhotos = _temPhotos;
 - (void)viewDidLoad
 {
     [_onLoadIndicator startAnimating];
     [self startConnection];
     _photos = [[NSMutableArray alloc] init];
     _receivedData = [[NSMutableData alloc] init];
+    _indexFlag = 4;
     PDLProcessConnection *_processor = [[PDLProcessConnection alloc] init];
     _photos = [_processor getDataFromObject:_processor];
     self.tableView.delegate = self;
@@ -70,8 +75,15 @@
         NSError *er = nil;
         NSMutableDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:_receivedData options:kNilOptions error:&er];
         NSDictionary *secondDict = [dataDictionary objectForKey:@"data"];
+        
+        // get token string from dictionary
+        
         _token= [secondDict objectForKey:@"auth_token"];
         NSString *postString = [NSString stringWithFormat:@"http://beta.pashadelic.com/api/v1/users/2765.json"];
+        
+        // start sent request 2 to get data
+
+
         NSMutableURLRequest *_request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:postString] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
         [_request setHTTPMethod:@"GET"];
         [_request setValue:_token  forHTTPHeaderField:@"X-AUTH-TOKEN"];
@@ -80,6 +92,8 @@
     }
     if (connection == _conn2) {
         NSError *er = nil;
+        // get data from json
+
         NSMutableDictionary *finalData = [NSJSONSerialization JSONObjectWithData:_receivedData options:kNilOptions error:&er];
         NSMutableDictionary *dataDict = [finalData objectForKey:@"data"];
         NSMutableDictionary *dataDict2 = [dataDict objectForKey:@"user"];
@@ -89,6 +103,11 @@
             NSMutableDictionary *dictTemp = [dataArray objectAtIndex:i];
             PDLPhotos *newObject = [[PDLPhotos alloc] initFromDictionary: dictTemp];
             [_photos addObject:newObject];
+        }
+        _temPhotos = [[NSMutableArray alloc] init];
+        for (int i = 0; i < 5; i++) {
+            
+            [_temPhotos addObject:[_photos objectAtIndex:i]];
         }
         [_onLoadIndicator stopAnimating];
         [_onLoadIndicator setHidden:YES];
@@ -103,7 +122,7 @@
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return _photos.count;
+    return _temPhotos.count;
 
 }
 
@@ -126,12 +145,14 @@
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"PDLCustomCell" owner:self options:nil];
         cell = (PDLCustomCell *)[nib objectAtIndex:0];
     }
-    PDLPhotos *photo = [_photos objectAtIndex:indexPath.row];
+    if ((indexPath.row == _temPhotos.count-1) && !(indexPath.row == _photos.count -1)) {
+        [self loadMore];
+    }
+    PDLPhotos *photo = [_temPhotos objectAtIndex:indexPath.row];
+    [cell.avatarIndicator startAnimating];
     [cell initiallizFromdictAtIndex:photo andIndex:indexPath];
     int width = 0;
     int height = 0;
-//    width = cell.bigImageView.image.size.width;
-//    height = cell.bigImageView.image.size.height;
     width = [photo width].intValue;
     height = [photo height].intValue;
     float factor = (float)height/(float)width;
@@ -147,7 +168,6 @@
     [cell bringSubviewToFront:cell.smallImageView];
     
 // assign attributes for cell
-    
     
     [cell.indicator startAnimating];
     cell.smallImageView.contentMode = UIViewContentModeScaleAspectFill;
@@ -168,13 +188,9 @@
 
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSInteger i = indexPath.row;
-    PDLPhotos *photo = [_photos objectAtIndex:i];
+    PDLPhotos *photo = [_temPhotos objectAtIndex:i];
     int width = 0;
     int height = 0;
-//    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString
-//                                                                           :[photo bigPhoto]]]];
-//    width = image.size.width;
-//    height = image.size.height;
     width = [photo width].intValue;
     height = [photo height].intValue;
     if (width < 320) {
@@ -194,6 +210,21 @@
     SDImageCache *imageCache = [SDImageCache sharedImageCache];
     [imageCache clearMemory];
     [imageCache clearDisk];
+    [_tableView reloadData];
+}
+- (void)loadMore{
+    if(_indexFlag > _photos.count-5)
+    {
+    
+        int x = _photos.count - _indexFlag;
+        _indexFlag +=x;
+    }
+    else
+    _indexFlag = _indexFlag + 5;
+    
+    for (int i = _temPhotos.count; i < _indexFlag; i++) {
+        [_temPhotos addObject:[_photos objectAtIndex:i]];
+    }
     [_tableView reloadData];
 }
 @end
