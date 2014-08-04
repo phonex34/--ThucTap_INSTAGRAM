@@ -49,7 +49,10 @@
                         <rect key="frame" x="20" y="26" width="20" height="20"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="color" red="0.054901964962482452" green="0.066666670143604279" blue="0.89019614458084106" alpha="1" colorSpace="deviceRGB"/>
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
                     </activityIndicatorView>
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -58,7 +61,10 @@
             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="avatarIndicator" destination="WHB-gQ-4M7" id="flZ-EP-qn4"/>
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
                 <outlet property="bigImageView" destination="eQg-jU-NWt" id="O39-7w-KYx"/>
                 <outlet property="indicator" destination="6j5-eI-GlX" id="n50-KZ-WmJ"/>
                 <outlet property="labelTitle" destination="9br-on-g9b" id="FtU-7Z-99e"/>

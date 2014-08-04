@@ -21,7 +21,10 @@
 - (void)awakeFromNib
 {
     [bigImageView addSubview:indicator];
+<<<<<<< HEAD
     [smallImageView addSubview:avatarIndicator];
+=======
+>>>>>>> master
     [self addSubview:smallImageView];
     [smallImageView addSubview:avatarIndicator];
     
@@ -56,6 +59,7 @@
         [indicator stopAnimating];
         indicator.hidden = YES;
         progressBar.hidden = YES;
+<<<<<<< HEAD
 
     }
      ];
@@ -64,6 +68,11 @@
 //        indicator.hidden = YES;
 //        progressBar.hidden = YES;
 //    }];
+=======
+    }
+     ];
+    
+>>>>>>> master
 }
 
 @end
