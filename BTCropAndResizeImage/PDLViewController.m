@@ -28,6 +28,7 @@
 @synthesize onLoadIndicator = _onLoadIndicator;
 @synthesize indexFlag = _indexFlag;
 @synthesize temPhotos = _temPhotos;
+
 - (void)viewDidLoad
 {
     [_onLoadIndicator startAnimating];
@@ -35,8 +36,6 @@
     _photos = [[NSMutableArray alloc] init];
     _receivedData = [[NSMutableData alloc] init];
     _indexFlag = 4;
-    PDLProcessConnection *_processor = [[PDLProcessConnection alloc] init];
-    _photos = [_processor getDataFromObject:_processor];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [super viewDidLoad];
@@ -69,12 +68,14 @@
     
 }
 
+
 -(void) connectionDidFinishLoading:(NSURLConnection *)connection{
     
     if (connection == _conn1) {
         NSError *er = nil;
         NSMutableDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:_receivedData options:kNilOptions error:&er];
         NSDictionary *secondDict = [dataDictionary objectForKey:@"data"];
+
         
         // get token string from dictionary
         
@@ -82,7 +83,8 @@
         NSString *postString = [NSString stringWithFormat:@"http://beta.pashadelic.com/api/v1/users/2765.json"];
         
         // start sent request 2 to get data
-
+        _token= [secondDict objectForKey:@"auth_token"];
+        NSString *postString = [NSString stringWithFormat:@"http://beta.pashadelic.com/api/v1/users/2765.json"];
 
         NSMutableURLRequest *_request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:postString] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
         [_request setHTTPMethod:@"GET"];
@@ -93,7 +95,6 @@
     if (connection == _conn2) {
         NSError *er = nil;
         // get data from json
-
         NSMutableDictionary *finalData = [NSJSONSerialization JSONObjectWithData:_receivedData options:kNilOptions error:&er];
         NSMutableDictionary *dataDict = [finalData objectForKey:@"data"];
         NSMutableDictionary *dataDict2 = [dataDict objectForKey:@"user"];
@@ -104,6 +105,7 @@
             PDLPhotos *newObject = [[PDLPhotos alloc] initFromDictionary: dictTemp];
             [_photos addObject:newObject];
         }
+
         _temPhotos = [[NSMutableArray alloc] init];
         for (int i = 0; i < 5; i++) {
             
@@ -122,8 +124,8 @@
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return _temPhotos.count;
 
+    return _temPhotos.count;
 }
 
 -(NSInteger) tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
@@ -145,6 +147,7 @@
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"PDLCustomCell" owner:self options:nil];
         cell = (PDLCustomCell *)[nib objectAtIndex:0];
     }
+
     if ((indexPath.row == _temPhotos.count-1) && !(indexPath.row == _photos.count -1)) {
         [self loadMore];
     }
@@ -211,6 +214,7 @@
     [imageCache clearMemory];
     [imageCache clearDisk];
     [_tableView reloadData];
+
 }
 - (void)loadMore{
     if(_indexFlag > _photos.count-5)

@@ -51,15 +51,25 @@ UIButton *btnSingleEdit;
 @synthesize lkImageToCrop;
 @synthesize lkBoundView;
 @synthesize lkChooseType;
+@synthesize lkViewController;
+@synthesize lkBack;
+@synthesize lkImageShare;
 
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-    imageToResize= lkImageToCrop;
-    imageView.image = [self cropImageMethod:[self resizeImage]];
-    imageView.contentMode = UIViewContentModeScaleToFill;
     
+    imageToResize= lkImageToCrop;
+    int a = lkBack;
+    
+    if (a == 10) {
+        imageView.image = lkImageShare;
+    }else{
+        imageView.image = [self cropImageMethod:[self resizeImage]];
+    }
+    
+    imageView.contentMode = UIViewContentModeScaleAspectFit;
+    [super viewDidLoad];
     
     beginUIImage=imageView.image;
     
@@ -292,7 +302,7 @@ UIButton *btnSingleEdit;
     //   CGFloat variableToCropHeight = (imageResizedToCrop.size.height/410.0);
     
     
-    croppedRect = CGRectMake(0, topEdgePosition, 320, 320);
+    croppedRect = CGRectMake(0, topEdgePosition - 44, 320, 320);
     CGImageRef tmp = CGImageCreateWithImageInRect([imageResizedToCrop CGImage], croppedRect);
     croppedImage = [UIImage imageWithCGImage:tmp];
     CGImageRelease(tmp);
@@ -316,7 +326,7 @@ UIButton *btnSingleEdit;
     UIImage *imageResault;
     //call resize image class
     resizeImage *imageResize = [[resizeImage alloc]init];
-    imageResault = [imageResize resizeImage:imageToResize width:320 height:430];
+    imageResault = [imageResize resizeImage:imageToResize width:320 height:390];
     NSData *resizedImageData = [imageResize thumbnailImageData];
     
     
@@ -331,7 +341,7 @@ UIButton *btnSingleEdit;
     // imageView.image = [imageView.image fixOrientation];
     //hien thi kich thuoc sau khi resize
     NSInteger resizedImageDataSize = resizedImageData.length;
-    NSLog(@"resized size %d Bytes", resizedImageDataSize);
+    NSLog(@"resized size %ld Bytes", (long)resizedImageDataSize);
     NSLog(@"resault resize width %f height %f", imageResault.size.width,imageResault.size.height);
     return imageResault;
     
@@ -343,8 +353,14 @@ UIButton *btnSingleEdit;
     if ([segue.identifier isEqualToString:@"ShareView"]) {
         ShareViewController *destination = segue.destinationViewController;
         destination.lkImage = imageView.image;
+        destination.lkViewControllerFromFilter = lkViewController;
         
-        
+    }
+    if ([segue.identifier isEqualToString:@"BackCrop"]) {
+        NSLog(@"Back to crop");
+        ViewController *destination = segue.destinationViewController;
+        destination.lkBackImage = lkViewController.imageView.image;
+        destination.lkTabBar = lkViewController.tabBarController;
     }
 }
 
