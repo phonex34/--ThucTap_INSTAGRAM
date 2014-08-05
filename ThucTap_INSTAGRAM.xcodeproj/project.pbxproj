@@ -874,6 +874,12 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BTCropAndResizeImage/ThucTap_INSTAGRAM-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"../../GPUImage-master/framework/**",
+					"../GPUImage-master/framework/**",
+				);
 				INFOPLIST_FILE = "BTCropAndResizeImage/ThucTap_INSTAGRAM-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = "-ObjC";
@@ -894,6 +900,12 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BTCropAndResizeImage/ThucTap_INSTAGRAM-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"../../GPUImage-master/framework/**",
+					"../GPUImage-master/framework/**",
+				);
 				INFOPLIST_FILE = "BTCropAndResizeImage/ThucTap_INSTAGRAM-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = "-ObjC";
