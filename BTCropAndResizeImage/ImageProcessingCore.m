@@ -12,7 +12,7 @@
 #import "testViewController.h"
 @implementation ImageProcessingCore
 
-NSMutableDictionary *allEditFilter;
+//NSMutableDictionary *allEditFilter;
 //CIFilter *lighten,*sharpen,*contrast;
 UIImageOrientation orientation; // New!
 GPUImageBrightnessFilter *lighten;
@@ -22,7 +22,9 @@ GPUImageExposureFilter *exposure;
 GPUImageSaturationFilter *saturation;
 GPUImageVignetteFilter *vignette;
 NSArray *editFilterName ;NSArray *filterValue;
-int countInit=0;
+
+@synthesize allEditFilter;
+//int countInit=0;
 -(void) initVarialbe
 {
     editFilterName = @[@"Brightness", @"Sharpeness",
@@ -32,18 +34,18 @@ int countInit=0;
                     [NSNumber numberWithFloat:1.0],
                     [NSNumber numberWithFloat:0.0],
                     [NSNumber numberWithFloat:1.0],
-                    [NSNumber numberWithFloat:-0.5],
+                    [NSNumber numberWithFloat:0.0],
                     [NSNumber numberWithInt:0]];
     allEditFilter = [NSMutableDictionary dictionaryWithObjects:filterValue forKeys:editFilterName];
-    
+
 }
 
--(UIImage *)editImageProcessing:(UIImage *)imageViewController withAmount:(float)intensity editTag:(int ) tag{
+-(UIImage *)editImageProcessing:(UIImage *)imageViewController withAmount:(float)intensity editTag:(int ) tag countInit:(int) countInit{
     
     if (countInit==0) {
         [self initVarialbe];
     }
-    countInit=1;
+   
     GPUImagePicture *inputPicture = [[GPUImagePicture alloc] initWithImage:imageViewController smoothlyScaleOutput:NO];
     
     
@@ -53,6 +55,8 @@ int countInit=0;
     exposure=[[GPUImageExposureFilter alloc] init];
     saturation = [[GPUImageSaturationFilter alloc ] init];
     vignette =[[GPUImageVignetteFilter alloc ]init];
+
+
     //   UIColor *color=
     //    vignette.vignetteColor=[UIColor whiteColor];
     UIImage *outputUIImage;
@@ -60,7 +64,7 @@ int countInit=0;
     switch (tag) {
         case 2:
             [allEditFilter setObject: [NSNumber numberWithFloat:intensity] forKey:@"Brightness"];
-            NSLog(@"%@",allEditFilter);
+//            NSLog(@"%@",allEditFilter);
             
             NSLog(@"gia tri float bright %f",[[allEditFilter objectForKey:@"Brightness"] floatValue ]);
             lighten.brightness=[[allEditFilter objectForKey:@"Brightness"] floatValue];
@@ -68,6 +72,7 @@ int countInit=0;
             contrast.contrast=[[allEditFilter objectForKey:@"Contrast"] floatValue];
             exposure.exposure=[[allEditFilter objectForKey:@"Exposure"] floatValue];
             saturation.saturation=[[allEditFilter objectForKey:@"Saturation"] floatValue];
+            
             vignette.vignetteEnd=[[allEditFilter objectForKey:@"Vignette"] floatValue];
             
             
@@ -83,7 +88,7 @@ int countInit=0;
             break;
         case 3:
             [allEditFilter setObject: [NSNumber numberWithFloat:intensity] forKey:@"Sharpeness"];
-            NSLog(@"%@",allEditFilter);
+//            NSLog(@"%@",allEditFilter);
             lighten.brightness=[[allEditFilter objectForKey:@"Brightness"] floatValue];
             sharpen.sharpness=[[allEditFilter objectForKey:@"Sharpeness"] floatValue];
             contrast.contrast=[[allEditFilter objectForKey:@"Contrast"] floatValue];
@@ -105,7 +110,7 @@ int countInit=0;
             break;
         case 4:
             [allEditFilter setObject: [NSNumber numberWithFloat:intensity] forKey:@"Contrast"];
-            NSLog(@"%@",allEditFilter);
+//            NSLog(@"%@",allEditFilter);
             lighten.brightness=[[allEditFilter objectForKey:@"Brightness"] floatValue];
             sharpen.sharpness=[[allEditFilter objectForKey:@"Sharpeness"] floatValue];
             contrast.contrast=[[allEditFilter objectForKey:@"Contrast"] floatValue];
@@ -128,7 +133,7 @@ int countInit=0;
             
         case 5:
             [allEditFilter setObject: [NSNumber numberWithFloat:intensity] forKey:@"Exposure"];
-            NSLog(@"%@",allEditFilter);
+//            NSLog(@"%@",allEditFilter);
             lighten.brightness=[[allEditFilter objectForKey:@"Brightness"] floatValue];
             sharpen.sharpness=[[allEditFilter objectForKey:@"Sharpeness"] floatValue];
             contrast.contrast=[[allEditFilter objectForKey:@"Contrast"] floatValue];
@@ -151,7 +156,7 @@ int countInit=0;
         case 6:
             
             [allEditFilter setObject: [NSNumber numberWithFloat:intensity] forKey:@"Saturation"];
-            NSLog(@"%@",allEditFilter);
+//            NSLog(@"%@",allEditFilter);
             lighten.brightness=[[allEditFilter objectForKey:@"Brightness"] floatValue];
             sharpen.sharpness=[[allEditFilter objectForKey:@"Sharpeness"] floatValue];
             contrast.contrast=[[allEditFilter objectForKey:@"Contrast"] floatValue];
@@ -175,7 +180,7 @@ int countInit=0;
         case 7:
             
             [allEditFilter setObject: [NSNumber numberWithFloat:intensity] forKey:@"Vignette"];
-            NSLog(@"%@",allEditFilter);
+//            NSLog(@"%@",allEditFilter);
             lighten.brightness=[[allEditFilter objectForKey:@"Brightness"] floatValue];
             sharpen.sharpness=[[allEditFilter objectForKey:@"Sharpeness"] floatValue];
             contrast.contrast=[[allEditFilter objectForKey:@"Contrast"] floatValue];
