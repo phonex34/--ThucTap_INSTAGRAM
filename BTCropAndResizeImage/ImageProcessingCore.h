@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface ImageProcessingCore : UIImage
--(UIImage *)editImageProcessing:(UIImage *)imageViewController withAmount:(float)intensity editTag:(int ) tag;
+
+-(UIImage *)editImageProcessing:(UIImage *)imageViewController withAmount:(float)intensity editTag:(int ) tag countInit:(int) countInit;
 -(UIImage *)effectImageProcessing:(UIImage *)imageViewController editTag:(int ) tag;
+
+@property(nonatomic,strong) NSMutableDictionary  *allEditFilter;
 @end

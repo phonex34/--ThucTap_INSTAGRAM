@@ -24,7 +24,6 @@
 @implementation testViewController{
     UIImage *imageToResize;
 }
-UIImage *beginImage;
 
 //@auhtor phonex
 //case edit button(switch bright,sharpness etc.....)
@@ -32,7 +31,7 @@ int caseEditButton,caseEffectButton;
 //count effect used 0= no effect
 int countEditUsed=0,countEffectUsed=0;
 UIImage *beginUIImage,*imgViewAfterEditImage,*imgViewAfterEffectImage;//use to contain the temp imageview image
-
+NSMutableDictionary *viewEditFilterDict;
 //@author phonex
 //Array for ScrollView
 NSArray *imageFilterScroll;
@@ -211,11 +210,13 @@ ImageProcessingCore *imageEditProcessing ;
     else{
         
         tempEffectImage=imgViewAfterEditImage;
+        countEffectUsed=0;
     }
     
     if(caseEffectButton==2){
     
         imageView.image=beginUIImage;
+        countEffectUsed=0;
     }
     
     else{
@@ -243,6 +244,7 @@ ImageProcessingCore *imageEditProcessing ;
         //imgViewAfterEffectImage=[imageEditProcessing effectImageProcessing:tempEffectImage2 editTag:caseEffectButton];
     });
     }
+
 }
 
 -(void) editFilterSelected:(id)sender{
@@ -255,7 +257,7 @@ ImageProcessingCore *imageEditProcessing ;
         case 2:
             imageSlider.maximumValue=0.5;
             imageSlider.minimumValue=-0.5;
-            imageSlider.value=0.0;
+            imageSlider.value=[[viewEditFilterDict objectForKey:@"Brightness"] floatValue];
             
             caseEditButton=2;
             
@@ -264,7 +266,7 @@ ImageProcessingCore *imageEditProcessing ;
         case 3:
             imageSlider.maximumValue=1;
             imageSlider.minimumValue=-1;
-            imageSlider.value=0.0;
+            imageSlider.value=[[viewEditFilterDict objectForKey:@"Sharpeness"] floatValue];
             
             caseEditButton=3;
             
@@ -275,7 +277,7 @@ ImageProcessingCore *imageEditProcessing ;
         case 4:
             imageSlider.minimumValue=0.0;
             imageSlider.maximumValue=2.0;
-            imageSlider.value=1.0;
+            imageSlider.value=[[viewEditFilterDict objectForKey:@"Contrast"] floatValue];
             
             caseEditButton=4;
             
@@ -284,13 +286,13 @@ ImageProcessingCore *imageEditProcessing ;
             caseEditButton =5;
             imageSlider.minimumValue=-1.0;
             imageSlider.maximumValue=2.0;
-            imageSlider.value=0.0;
+            imageSlider.value=[[viewEditFilterDict objectForKey:@"Exposure"] floatValue];
             break;
         case 6:
             caseEditButton =6;
             imageSlider.minimumValue=0.0;
             imageSlider.maximumValue=2.0;
-            imageSlider.value=1.0;
+            imageSlider.value=[[viewEditFilterDict objectForKey:@"Saturation"] floatValue];
             
             break;
             
@@ -298,7 +300,7 @@ ImageProcessingCore *imageEditProcessing ;
             caseEditButton =7;
             imageSlider.minimumValue=0.5;
             imageSlider.maximumValue=1.0;
-            imageSlider.value=0.5;
+            imageSlider.value=[[viewEditFilterDict objectForKey:@"Vignette"] floatValue];
             break;
         default:
             break;
@@ -308,8 +310,10 @@ ImageProcessingCore *imageEditProcessing ;
 
 - (IBAction)changeSliderValue:(id)sender {
     //
-    countEditUsed=1;
-    UIImage *beginImage2;
+   
+    
+    UIImage *beginImage2;UIImage *beginImage;
+
     float slideValue = imageSlider.value;
     NSLog(@"gia tri slider %f va case edit button %d",slideValue,caseEditButton);
     NSLog(@"gia tri count effect %d",countEffectUsed);
@@ -325,10 +329,14 @@ ImageProcessingCore *imageEditProcessing ;
     }
     //ImageProcessingCore *imageEditProcessing =[[ImageProcessingCore alloc] init];
     
-    imageView.image= [imageEditProcessing editImageProcessing:beginImage withAmount:slideValue editTag:caseEditButton];
+    imageView.image= [imageEditProcessing editImageProcessing:beginImage withAmount:slideValue editTag:caseEditButton countInit:countEditUsed];
     
-    imgViewAfterEditImage=[imageEditProcessing editImageProcessing:beginImage2 withAmount:slideValue editTag:caseEditButton];//
+    imgViewAfterEditImage=[imageEditProcessing editImageProcessing:beginImage2 withAmount:slideValue editTag:caseEditButton countInit:countEditUsed];//
+    
+    countEditUsed=1;
 }
+
+
 - (void) editImage:(id)sender{
     UIImage *editImage=[UIImage imageNamed:@"enhancetoolactive@2x.png"];
     UIImage *effectImage=[UIImage imageNamed:@"edit-filtertool@2x.png"];
@@ -338,6 +346,44 @@ ImageProcessingCore *imageEditProcessing ;
     effectScrollView.hidden=YES;
     editScrollView.hidden=NO;
     
+    NSArray *editFilterName = @[@"Brightness", @"Sharpeness",
+                               @"Contrast",@"Exposure",@"Saturation",@"Vignette",@"Effect"];
+    
+    NSArray *filterValue = @[[NSNumber numberWithFloat:0.0],
+                    [NSNumber numberWithFloat:0.0],
+                    [NSNumber numberWithFloat:1.0],
+                    [NSNumber numberWithFloat:0.0],
+                    [NSNumber numberWithFloat:1.0],
+                    [NSNumber numberWithFloat:0],
+                    [NSNumber numberWithInt:0]];
+  
+    NSMutableDictionary *tempDict=[NSMutableDictionary dictionaryWithObjects:filterValue forKeys:editFilterName];;
+    if(countEditUsed==0){
+         viewEditFilterDict = [NSMutableDictionary dictionaryWithObjects:filterValue forKeys:editFilterName];
+
+    
+    }
+    
+    else{
+    
+        viewEditFilterDict=imageEditProcessing.allEditFilter;
+   
+        for(int i=0;i<6;i++){
+            
+            if ([[viewEditFilterDict objectForKey:[editFilterName objectAtIndex:i]] floatValue]!=[[tempDict objectForKey:[editFilterName objectAtIndex:i]] floatValue]) {
+                UIImageView *tempImageView=[[UIImageView alloc] initWithFrame:CGRectMake(i*80,78,80,2)
+                                            ];
+                tempImageView.image=[UIImage imageNamed:@"sidebar-background.png"];
+                [editScrollView addSubview:tempImageView];
+            }
+            
+            
+        }
+    }
+            NSLog(@"%@",viewEditFilterDict);
+    
+
+
     
 }
 
@@ -430,10 +476,14 @@ ImageProcessingCore *imageEditProcessing ;
         
     }
     if ([segue.identifier isEqualToString:@"BackCrop"]) {
+        countEditUsed=0;
+        countEffectUsed=0;
+//        beginUIImage=imageView.image;
         NSLog(@"Back to crop");
         ViewController *destination = segue.destinationViewController;
         destination.lkBackImage = lkViewController.imageView.image;
         destination.lkTabBar = lkViewController.tabBarController;
+        
     }
 }
 

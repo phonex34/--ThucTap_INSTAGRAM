@@ -18,6 +18,8 @@
 @property (strong, nonatomic) UIImage *lkBackImage;
 @property (strong, nonatomic) UITabBarController *lkTabBar;
 
+
+
 -(IBAction)handlePan:(UIPanGestureRecognizer *)recognizer;
 
 
