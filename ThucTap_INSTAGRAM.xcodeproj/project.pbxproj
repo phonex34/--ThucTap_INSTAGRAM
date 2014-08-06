@@ -12,6 +12,8 @@
 		2F390528198EC48500FA3F49 /* original.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2F390527198EC48500FA3F49 /* original.jpg */; };
 		2F9A76001984F41900AABFD9 /* ImageProcessingCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F9A75FF1984F41900AABFD9 /* ImageProcessingCore.m */; };
 		2F9A76021984F45400AABFD9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F9A76011984F45400AABFD9 /* Main.storyboard */; };
+		2FFF835119923E0E00B2CCB6 /* sidebar-background-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FFF835019923E0E00B2CCB6 /* sidebar-background-normal.png */; };
+		2FFF8353199240DD00B2CCB6 /* sidebar-background.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FFF8352199240DD00B2CCB6 /* sidebar-background.png */; };
 		66032939198B79A300CDB6BE /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66032938198B79A300CDB6BE /* SDWebImage.framework */; };
 		660329C3198B8F6900CDB6BE /* btnFacebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 660329AE198B8F6900CDB6BE /* btnFacebook.png */; };
 		660329C4198B8F6900CDB6BE /* btnLTTTeam8.png in Resources */ = {isa = PBXBuildFile; fileRef = 660329AF198B8F6900CDB6BE /* btnLTTTeam8.png */; };
@@ -137,6 +139,8 @@
 		2F9A75FE1984F41900AABFD9 /* ImageProcessingCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageProcessingCore.h; sourceTree = "<group>"; };
 		2F9A75FF1984F41900AABFD9 /* ImageProcessingCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageProcessingCore.m; sourceTree = "<group>"; };
 		2F9A76011984F45400AABFD9 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		2FFF835019923E0E00B2CCB6 /* sidebar-background-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sidebar-background-normal.png"; sourceTree = "<group>"; };
+		2FFF8352199240DD00B2CCB6 /* sidebar-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sidebar-background.png"; sourceTree = "<group>"; };
 		66032938198B79A300CDB6BE /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SDWebImage.framework; sourceTree = "<group>"; };
 		660329AE198B8F6900CDB6BE /* btnFacebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnFacebook.png; sourceTree = "<group>"; };
 		660329AF198B8F6900CDB6BE /* btnLTTTeam8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnLTTTeam8.png; sourceTree = "<group>"; };
@@ -473,6 +477,8 @@
 				2F390525198EC31700FA3F49 /* upload-background2.png */,
 				662400DC198BEAF20095AE65 /* brightnesstool@2x.png */,
 				2F390527198EC48500FA3F49 /* original.jpg */,
+				2FFF8352199240DD00B2CCB6 /* sidebar-background.png */,
+				2FFF835019923E0E00B2CCB6 /* sidebar-background-normal.png */,
 				662400DD198BEAF20095AE65 /* contrasttool@2x.png */,
 				662400DE198BEAF20095AE65 /* highlightstool@2x.png */,
 				662400DF198BEAF20095AE65 /* luxtool@2x.png */,
@@ -671,6 +677,7 @@
 				66078CEC197DD7510010F575 /* e10.png in Resources */,
 				66AEADC51976D0B800BC34AA /* Images.xcassets in Resources */,
 				660329D4198B8F6900CDB6BE /* pictures.png in Resources */,
+				2FFF835119923E0E00B2CCB6 /* sidebar-background-normal.png in Resources */,
 				2F390526198EC31700FA3F49 /* upload-background2.png in Resources */,
 				660329D7198B8F6900CDB6BE /* twitter.png in Resources */,
 				662400E8198BEAF20095AE65 /* shadowstool@2x.png in Resources */,
@@ -699,6 +706,7 @@
 				662400D9198BEA980095AE65 /* edit-luxtool@2x.png in Resources */,
 				66078CE4197DD7510010F575 /* e2.png in Resources */,
 				660329CC198B8F6900CDB6BE /* folder_pictures.png in Resources */,
+				2FFF8353199240DD00B2CCB6 /* sidebar-background.png in Resources */,
 				662400DA198BEA980095AE65 /* enhancetoolactive@2x.png in Resources */,
 				6604A05E199201B8004249CD /* camera.png in Resources */,
 				6604A05F199201B8004249CD /* handle.png in Resources */,
@@ -806,7 +814,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Thanh Ho Hai (PNYZ6Z8ML5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Thanh Ho Hai (PNYZ6Z8ML5)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -826,9 +835,12 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"../../GPUImage-master/framework/**",
+					"../GPUImage-master/framework/**",
+					"GPUImage-master/framework/**",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "64CB783E-7586-4793-A75A-2E6FD3456FD6";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -849,7 +861,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Thanh Ho Hai (PNYZ6Z8ML5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Thanh Ho Hai (PNYZ6Z8ML5)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -863,8 +876,11 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"../../GPUImage-master/framework/**",
+					"../GPUImage-master/framework/**",
+					"GPUImage-master/framework/**",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				PROVISIONING_PROFILE = "64CB783E-7586-4793-A75A-2E6FD3456FD6";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -887,6 +903,7 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"../../GPUImage-master/framework/**",
 					"../GPUImage-master/framework/**",
+					"GPUImage-master/framework/**",
 				);
 				INFOPLIST_FILE = "BTCropAndResizeImage/ThucTap_INSTAGRAM-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
@@ -913,6 +930,7 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"../../GPUImage-master/framework/**",
 					"../GPUImage-master/framework/**",
+					"GPUImage-master/framework/**",
 				);
 				INFOPLIST_FILE = "BTCropAndResizeImage/ThucTap_INSTAGRAM-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;

@@ -41,6 +41,9 @@ UIButton *btnEffectImage,*btnEditImage;
 NSArray *imageEditScroll;
 UIButton *btnSingleEffect,*btnSingleEdit;
 UILabel *effectLabel;
+UIImageView *imageSideBarNormal;
+
+
 ImageProcessingCore *imageEditProcessing ;
 @synthesize navigationView,imageSliderView,imageView;
 @synthesize imageSlider;
@@ -117,7 +120,7 @@ ImageProcessingCore *imageEditProcessing ;
     [self.effectScrollView setContentSize: contentSize];
     
     //create a edit scroll view
-    [editScrollView setFrame:CGRectMake(0,380, 320, 90)];
+    [editScrollView setFrame:CGRectMake(0,500, 320, 90)];
     imageEditScroll = [NSArray arrayWithObjects:@"brightnesstool@2x.png",@"sharpentool@2x.png",@"contrasttool@2x.png",@"temptool@2x.png",@"saturationtool@2x.png",@"focustool@2x.png",nil];
     leftMargin=0;
     for (int i = 0; i < [editFilterName2 count]-1; i++)
@@ -151,6 +154,15 @@ ImageProcessingCore *imageEditProcessing ;
         [editScrollView addSubview:label];
         leftMargin += SCREEN_WIDTH-40;
         [btnSingleEdit addTarget:self action:@selector(editFilterSelected:) forControlEvents:UIControlEventTouchUpInside];
+        
+        
+        
+        
+        imageSideBarNormal=[[UIImageView alloc] initWithFrame:CGRectMake(i*80,78,80,2)
+                                    ];
+        imageSideBarNormal.image=[UIImage imageNamed:@"sidebar-background-normal.png"];
+        [editScrollView addSubview:imageSideBarNormal];
+        imageSideBarNormal.tag=30+i;
     }
     CGSize contentEditSize = CGSizeMake(leftMargin, SCREEN_HEIGHT);
     [self.editScrollView setContentSize: contentEditSize];
@@ -217,6 +229,11 @@ ImageProcessingCore *imageEditProcessing ;
     
         imageView.image=beginUIImage;
         countEffectUsed=0;
+        countEditUsed=0;
+        for(int i=0;i<6;i++){
+            UIImageView *tempSideBar = (UIImageView *)[self.view viewWithTag:30+i];
+            tempSideBar.image=[UIImage imageNamed:@"sidebar-background-normal.png"];
+            }
     }
     
     else{
@@ -248,7 +265,7 @@ ImageProcessingCore *imageEditProcessing ;
 }
 
 -(void) editFilterSelected:(id)sender{
-    [imageSliderView setFrame:CGRectMake(0,380, 320, 90)];
+    [imageSliderView setFrame:CGRectMake(0,400, 320, 90)];
     editScrollView.hidden=YES;
     imageSliderView.hidden=NO;
     
@@ -338,12 +355,27 @@ ImageProcessingCore *imageEditProcessing ;
 
 
 - (void) editImage:(id)sender{
+//    [editScrollView setAlpha:0.f];
+    CGRect animationUpFrame=CGRectMake(0, 400, editScrollView.frame.size.width, editScrollView.frame.size.height);
+    CGRect animationDownFrame=CGRectMake(effectScrollView.frame.origin.x, 500, editScrollView.frame.size.width, editScrollView.frame.size.height);
+//    animationFrame.origin.y -=100;e
+    [UIView animateWithDuration:0.2f delay:0.f options:UIViewAnimationOptionTransitionCurlDown animations:^{
+
+        effectScrollView.frame=animationDownFrame;
+    }
+    completion:^(BOOL finished) {
+     [UIView animateWithDuration:0.75f delay:0.f options:UIViewAnimationOptionTransitionCurlUp animations:^{
+//        [editScrollView setAlpha:0.f];
+         editScrollView.frame=animationUpFrame;
+        }
+      completion:nil];
+     }];
     UIImage *editImage=[UIImage imageNamed:@"enhancetoolactive@2x.png"];
     UIImage *effectImage=[UIImage imageNamed:@"edit-filtertool@2x.png"];
     [btnEffectImage setBackgroundImage:effectImage forState:UIControlStateNormal];
     [btnEditImage setBackgroundImage:editImage forState:UIControlStateNormal];
     imageSliderView.hidden=YES;
-    effectScrollView.hidden=YES;
+    effectScrollView.hidden=NO;
     editScrollView.hidden=NO;
     
     NSArray *editFilterName = @[@"Brightness", @"Sharpeness",
@@ -369,14 +401,13 @@ ImageProcessingCore *imageEditProcessing ;
         viewEditFilterDict=imageEditProcessing.allEditFilter;
    
         for(int i=0;i<6;i++){
-            
+             UIImageView *tempSideBar = (UIImageView *)[self.view viewWithTag:30+i];
             if ([[viewEditFilterDict objectForKey:[editFilterName objectAtIndex:i]] floatValue]!=[[tempDict objectForKey:[editFilterName objectAtIndex:i]] floatValue]) {
-                UIImageView *tempImageView=[[UIImageView alloc] initWithFrame:CGRectMake(i*80,78,80,2)
-                                            ];
-                tempImageView.image=[UIImage imageNamed:@"sidebar-background.png"];
-                [editScrollView addSubview:tempImageView];
+                tempSideBar.image=[UIImage imageNamed:@"sidebar-background.png"];
             }
-            
+            else{
+                tempSideBar.image=[UIImage imageNamed:@"sidebar-background-normal.png"];
+            }
             
         }
     }
@@ -389,13 +420,29 @@ ImageProcessingCore *imageEditProcessing ;
 
 
 - (void) effectImage:(id)sender{
+    
+    CGRect animationDownFrame=CGRectMake(0,500, editScrollView.frame.size.width, editScrollView.frame.size.height);
+    CGRect animationUpFrame=CGRectMake(effectScrollView.frame.origin.x, 400, editScrollView.frame.size.width, editScrollView.frame.size.height);
+    //    animationFrame.origin.y -=100;e
+    [UIView animateWithDuration:0.2f delay:0.f options:UIViewAnimationOptionTransitionCurlDown animations:^{
+        editScrollView.frame=animationDownFrame;
+
+        
+    }
+                     completion:^(BOOL finished) {
+                         [UIView animateWithDuration:0.75f delay:0.f options:UIViewAnimationOptionTransitionCurlUp animations:^{
+                             //        [editScrollView setAlpha:0.f];
+                             effectScrollView.frame=animationUpFrame;
+                         }
+                                          completion:nil];
+                     }];
     UIImage *editImage=[UIImage imageNamed:@"edit-enhancetool@2x.png"];
     UIImage *effectImage=[UIImage imageNamed:@"filtertoolactive@2x.png"];
     [btnEffectImage setBackgroundImage:effectImage forState:UIControlStateNormal];
     [btnEditImage setBackgroundImage:editImage forState:UIControlStateNormal];
     imageSliderView.hidden=YES;
     effectScrollView.hidden=NO;
-    editScrollView.hidden=YES;
+    editScrollView.hidden=NO;
 }
 
 
@@ -486,6 +533,7 @@ ImageProcessingCore *imageEditProcessing ;
         
     }
 }
+
 
 //--------------------------------
 //@author dvduongth
