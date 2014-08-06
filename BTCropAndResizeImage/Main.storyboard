@@ -192,7 +192,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="color" red="0.28310111240000002" green="0.4143894273" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" tag="5" contentMode="scaleToFill" id="LRU-2O-4IS">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" tag="5" contentMode="scaleToFill" barStyle="blackTranslucent" id="LRU-2O-4IS">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>

@@ -14,6 +14,9 @@
 @end
 
 @implementation ShareViewController
+
+bool saveEnable;
+
 @synthesize lkImage,imageView,textView;
 @synthesize lkBack, lkViewControllerFromFilter;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -28,6 +31,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    saveEnable = true;
+    
     imageView.image = lkImage;
     textView.delegate = self;
     [textView setText:@""];
@@ -140,14 +146,19 @@
 
 //action save image to camera roll
 - (IBAction)saveToCameraRollClicked:(id)sender {
+    if (saveEnable) {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc]init];
+        actionSheet.delegate = self;
+        [actionSheet addButtonWithTitle:@"Save To Camera Roll"];
+        //put cancel button the last one
+        [actionSheet addButtonWithTitle:@"Cancel"];
+        actionSheet.cancelButtonIndex=actionSheet.numberOfButtons -1;
+        [actionSheet showInView:[self.view window]];
+    }else{
+        UIAlertView *message = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Image was exist. Because you've saved it. Try again with an other image." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [message show];
+    }
     
-    UIActionSheet *actionSheet = [[UIActionSheet alloc]init];
-    actionSheet.delegate = self;
-    [actionSheet addButtonWithTitle:@"Save To Camera Roll"];
-    //put cancel button the last one
-    [actionSheet addButtonWithTitle:@"Cancel"];
-    actionSheet.cancelButtonIndex=actionSheet.numberOfButtons -1;
-    [actionSheet showInView:[self.view window]];
     
 }
 
@@ -167,6 +178,7 @@
     if (!error) {
         title = @"";
         message = @"Your Photo was saved to the camera Roll.";
+        saveEnable = false;
         
     }else{
         title = @"";
