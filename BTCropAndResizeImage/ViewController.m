@@ -22,6 +22,9 @@
 @synthesize imageView,boundView;
 @synthesize lkBackImage;
 @synthesize lkTabBar;
+
+@synthesize viewBound;
+@synthesize btnBarCrop;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -30,6 +33,14 @@
     //self.imageView.image = imageToCrop;
 	// Do any additional setup after loading the view, typically from a nib.
     imageView.image = lkBackImage;
+    
+    //author dvduongth
+    if (imageView.image ==nil) {
+        viewBound.hidden = true;
+        btnBarCrop.enabled = false;
+    }
+    
+    
    // [self setTabBarItem:lkTabBar.tabBarItem];
     
     ImagePicker = [[UIImagePickerController alloc]init];
@@ -110,6 +121,8 @@
     UIImage *imageChoose = [info objectForKey:UIImagePickerControllerOriginalImage];
     [imageView setImage:imageChoose];
     [self dismissViewControllerAnimated:YES completion:NULL];
+    btnBarCrop.enabled =true;
+    viewBound.hidden = false;
     
 }
 //click cancel

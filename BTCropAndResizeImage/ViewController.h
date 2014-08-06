@@ -17,6 +17,8 @@
 @property (weak, nonatomic) IBOutlet UIView *boundView;
 @property (strong, nonatomic) UIImage *lkBackImage;
 @property (strong, nonatomic) UITabBarController *lkTabBar;
+@property (weak, nonatomic) IBOutlet UIView *viewBound;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *btnBarCrop;
 
 
 
